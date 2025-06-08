@@ -659,3 +659,5 @@ function triggerWelcomeAnimation() {
         }, 1000);
     }
 }
+// Trigger welcome animation on profile picture click
+document.querySelector('.profile-pic').addEventListener('click', triggerWelcomeAnimation);
