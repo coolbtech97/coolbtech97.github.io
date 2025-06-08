@@ -1,165 +1,79 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Anand Kumar</title>
-    <style>
-        body{
-            background-color: rgb(85, 64, 64);
-        }
-        hr{
-            background-color: rgb(95, 20, 200);
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anand Kumar - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <table align="center" cellspacing="40" width="100%">
-        <tr>
-            <td width="24%"><img src="https://github.com/coolbhaiya97/cv/blob/main/anandpic1.png?raw=true" alt="Anand Profile Pic" width="280"></td>
-            <td width="26%" align="left">
-                <font size="+2">
-                    <h1><strong>
-                            <font face="Hancock">COOL BOY</font>
-                        </strong></h1>
-                    <P>Hi, I am <strong><em>Anand Kumar</em></strong><br>
-                        I live at Kathoun, Rajoun, Banka<br>I am a B Tech CSE 1<sup>st</sup> year student at JBIT</P>
-                    <hr size="5" noshade color="pink">
-                    <h2>Contacts</h2>
-                                <ul>
-                                    <li><a target="_blank" href="https://wa.me/918271000000"><i>Whatsapp</i></a></li>
-                                    <li><a target="_blank" href="https://www.instagram.com/__cool__boy_97"><del>Instagram</del></a></li>
-                                    <li><a href="https://www.instagram.com/coolbhaiya97" target="_blank">
-                                            <font color="red">Gaming Instagram</font>
-                                        </a></li>
-                                    <li><a href="mailto:tbikash.rajoun2gmail.com"><strong>Email</strong></a></li>
-                                </ul>
-            </td>
-            <td align="right">
-                <table cellspacing="6" align="center" border="13" height="350" width="500" bgcolor="#ffa8B6">
-                    <tr align="center">
-                        <td>
-                            <h1>
-                                <strong><u>
-                                        <table bgcolor="softblue">
-                                            <tr>
-                                                <td>
-                                                    <font color="red">
-                                                        <font face="Georgia">FEEDBACK</font>
-                                                    </font>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </u></strong>
-                            </h1>
-                            <p>
-                            <form action="mailto:bhavesh.sinha1723@gmail.com" enctype="text/plain" method="post">
-                                <label>Name: </label>
-                                <input type="text" value="" name="Name">
-                                <br>
-                                <label>Email: </label>
-                                <input type="email" name="Email">
-                                <br>
-                                <label><em>Comment:</em> </label>
-                                <br>
-                                <textarea name="Comment" rows="5" cols="30">💙🥰</textarea>
-                                <br>
-                                <input type="submit">
-                            </form>
-                            </p>
-                </table>
-            </td>
-        </tr>
-    </table>
-    <!-- table over-->
-    <hr noshade color="red" size="6">
-    <!-- table over-->
-    <table width="100%">
-        <tr>
-            <td width="8%">
-                <table cellspacing="7" align="left" class="anand">
-                    <thead>
-                        <tr align="left">
-                            <th>Name</th>
-                            <th>Marks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Amit🤭</td>
-                            <td>97</td>
-                        </tr>
-                        <tr>
-                            <td>Natasa🥵</td>
-                            <td>92</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-            <td align="center" width="50%">
-                <table cellspacing="4" align="center">
-                    <thead>
-                        <tr align="left">
-                            <th>Name</th>
-                            <th>Marks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Roy🤭</td>
-                            <td>97</td>
-                        </tr>
-                        <tr>
-                            <td>Samiksha🥵</td>
-                            <td>92</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-            <td align="right">
-                <table align="center">
-                    <tr>
-                        <td><br>Gaaa</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-    <!-- Now Starting Form-->
-    <br>
-    <hr><br>
-    <form method="post" style="color: blue;">
-        <label>Your Name: </label>
-        <input type="text" value="">
-        <br><label>Password : </label>
-        <input type="password" value="">
-        <br><label>Do you want to sign up?</label>
-        <input type="checkbox">
-        <input type="color"><br>
-        <input type="submit" value="Save">
-    </form>
-    <br><br><br><br><br>
-    <p>
-    <table width="100%">
-        <tr>
-            <td align="left">
-                <font face="Heading">
-                    <font color="#6495ED">
-                        <font size=+10>
-                            <a href="https://raw.githubusercontent.com/coolbhaiya97/cv/main/A.html" target="_blank">View Source Code</a>
-                        </font>
-            </td>
-            <td align="right">
-                <font size=+2>
-                    <br><a href="https://github.com/coolbhaiya97/cv/blob/main/A.html" target="_blank">With Github</a>
-                </font>
-            </font>
-        </font>
-            </td>
-        </tr>
-    </table>
-    </p>
-</body>
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h2>Enter Password</h2>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Enter your password">
+            <button id="submitPassword" class="btn btn-primary">Submit</button>
+            <p class="error-message"></p>
+        </div>
+    </div>
 
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="https://raw.githubusercontent.com/coolbhaiya97/cv/refs/heads/main/anandpic1.png" alt="Anand Kumar" class="profile-pic">
+            <h1>ANAND KUMAR</h1>
+            <p class="tagline">Aspiring Cybersecurity Professional & Developer</p>
+        </div>
+        
+        <div class="info-tiles">
+            <div class="tile">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Education</h3>
+                <p>B.Tech CSE (2024-28)</p>
+                <p>JB Institute of Technology, Dehradun</p>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-envelope"></i>
+                <h3>Contact</h3>
+                <p>coolbtech97@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bhagalpur, Bihar</p>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-share-nodes"></i>
+                <h3>Social Links</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/__cool__boy_97/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/coolbtech97/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://t.me/coolbtech97" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="https://auth.geeksforgeeks.org/user/coolbhaiya97" target="_blank" aria-label="GeeksforGeeks"><i class="fas fa-code"></i></a>
+                </div>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Interests</h3>
+                <p>Cybersecurity</p>
+                <p>Programming & DSA</p>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-code"></i>
+                <h3>Skills</h3>
+                <p>HTML, C, C++</p>
+                <p>Data Structures</p>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-bullseye"></i>
+                <h3>Future Goals</h3>
+                <p>Work at Cisco</p>
+                <p>Cybersecurity Professional</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
