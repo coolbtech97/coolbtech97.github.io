@@ -1,5 +1,5 @@
-//itsanand.me
-const CORRECT_PASSWORD = 'anand123';
+// Set your password here (in a real application, this should be handled more securely)
+const CORRECT_PASSWORD = 'cool123';
 
 // Initialize IndexedDB
 let db;
@@ -659,5 +659,3 @@ function triggerWelcomeAnimation() {
         }, 1000);
     }
 }
-// Trigger welcome animation on profile picture click
-document.querySelector('.profile-pic').addEventListener('click', triggerWelcomeAnimation);
