@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anand Kumar - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="delay-animations">
+    <!-- Redirection to welcome page will happen via JavaScript -->
+    <script>
+        // Redirect to welcome.html and then back to index.html after 3 seconds
+        window.onload = function() {
+            // Store the current page to know we've already done the welcome redirect
+            if (!sessionStorage.getItem('welcomeShown')) {
+                sessionStorage.setItem('welcomeShown', 'true');
+                window.location.href = 'welcome.html';
+            }
+        };
+    </script>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="https://raw.githubusercontent.com/coolbhaiya97/cv/refs/heads/main/anandpic1.png" alt="Anand Kumar" class="profile-pic">
+            <h1>ANAND KUMAR</h1>
+            <p class="tagline">Aspiring Cybersecurity Professional & Developer</p>
+        </div>
+        
+        <div class="info-tiles">
+            <div class="tile">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Education</h3>
+                <p>B.Tech CSE (2024-28)</p>
+                <p>JB Institute of Technology, Dehradun</p>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-envelope"></i>
+                <h3>Contact</h3>
+                <p>coolbtech97@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bhagalpur, Bihar</p>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-share-nodes"></i>
+                <h3>Social Links</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/__cool__boy_97/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/coolbtech97/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://t.me/coolbtech97" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="https://auth.geeksforgeeks.org/user/coolbhaiya97" target="_blank" aria-label="GeeksforGeeks"><i class="fas fa-code"></i></a>
+                </div>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Interests</h3>
+                <p>Cybersecurity</p>
+                <p>Programming & DSA</p>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-code"></i>
+                <h3>Skills</h3>
+                <p>HTML, C, C++</p>
+                <p>Data Structures</p>
+            </div>
+            
+            <div class="tile">
+                <i class="fas fa-bullseye"></i>
+                <h3>Future Goals</h3>
+                <p>Work at Cisco</p>
+                <p>Cybersecurity Professional</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+    // Remove animation delay after 3s (post-welcome)
+    setTimeout(function() {
+        document.body.classList.remove('delay-animations');
+    }, 3000);
+    </script>
+</body>
+</html>
