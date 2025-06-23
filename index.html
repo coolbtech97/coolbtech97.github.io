@@ -1,68 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(120deg, #2563eb 0%, #f472b6 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .welcome-animation-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            width: 100vw;
-            height: 100vh;
-        }
-        .welcome-text {
-            font-size: 4rem;
-            font-weight: bold;
-            letter-spacing: 0.2em;
-            color: #fff;
-            text-shadow: 0 4px 32px #1e293b55;
-            animation: welcomePop 1.2s cubic-bezier(.68,-0.55,.27,1.55);
-            background: linear-gradient(90deg, #f472b6 0%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        @keyframes welcomePop {
-            0% {
-                opacity: 0;
-                transform: scale(0.7) translateY(40px);
-            }
-            60% {
-                opacity: 1;
-                transform: scale(1.15) translateY(-10px);
-            }
-            80% {
-                transform: scale(0.95) translateY(0);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="welcome-animation-content">
-        <span class="welcome-text">WELCOME</span>
-    </div>
-    <script>
-        // Redirect to main index.html after 2 seconds
-        setTimeout(function() {
-            window.location.href = "1";
-        }, 2000);
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anand - Full Stack Developer & Engineering Student</title>
+    <meta name="description" content="Anand's Portfolio - B.Tech CSE Student at JBIT Dehradun, Full Stack Developer specializing in modern web technologies" />
+    <meta name="author" content="Anand" />
+    <meta name="keywords" content="Anand, Portfolio, Full Stack Developer, Engineering Student, JBIT Dehradun, React, JavaScript, Web Development" />
+
+    <meta property="og:title" content="Anand - Full Stack Developer & Engineering Student" />
+    <meta property="og:description" content="Anand's Portfolio - B.Tech CSE Student at JBIT Dehradun, Full Stack Developer specializing in modern web technologies" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
