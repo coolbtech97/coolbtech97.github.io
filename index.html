@@ -8,21 +8,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="delay-animations">
-    <!-- Redirection to welcome page will happen via JavaScript -->
-    <script>
-        // Redirect to welcome.html and then back to index.html after 3 seconds
-        window.onload = function() {
-            // Store the current page to know we've already done the welcome redirect
-            if (!sessionStorage.getItem('welcomeShown')) {
-                sessionStorage.setItem('welcomeShown', 'true');
-                window.location.href = 'welcome.html';
-            }
-        };
-    </script>
-
     <div class="profile-container">
         <div class="profile-header">
-            <img src="https://raw.githubusercontent.com/coolbhaiya97/cv/refs/heads/main/anandpic1.png" alt="Anand Kumar" class="profile-pic">
+            <img src="profile-pic.png" alt="Anand Kumar" class="profile-pic">
             <h1>ANAND KUMAR</h1>
             <p class="tagline">Aspiring Cybersecurity Professional & Developer</p>
         </div>
