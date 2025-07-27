@@ -798,22 +798,26 @@
       </div>
       <div class="contact-form fade-in">
         <h3>Send Me a Message</h3>
-        <form onsubmit="return confirmMessage()">
+        <form action="https://formsubmit.co/tbikash.rajoun2@gmail.com" method="POST" onsubmit="return confirmMessage()">
+          <input type="hidden" name="_next" value="https://coolbtech97.github.io/thank-you.html">
+          <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none">
           <div class="form-group">
             <label for="name">Your Name</label>
-            <input type="text" id="name" class="form-control" required>
+            <input type="text" id="name" name="name" class="form-control" required>
           </div>
           <div class="form-group">
             <label for="email">Your Email</label>
-            <input type="email" id="email" class="form-control" required>
+            <input type="email" id="email" name="email" class="form-control" required>
           </div>
           <div class="form-group">
             <label for="subject">Subject</label>
-            <input type="text" id="subject" class="form-control" required>
+            <input type="text" id="subject" name="subject" class="form-control" required>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" class="form-control" required></textarea>
+            <textarea id="message" name="message" class="form-control" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
@@ -892,10 +896,10 @@
     });
   });
   
-  // Form submission
+  // Form submission - updated to allow actual form submission
   function confirmMessage() {
-    alert("Thank you for your message! I'll get back to you soon.");
-    return false; // Prevent actual form submission
+    alert("Thank you for your message! You'll be redirected after submission.");
+    return true; // Allow the form to submit
   }
   
   // Animation on scroll
