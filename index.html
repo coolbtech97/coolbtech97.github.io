@@ -1,166 +1,24 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Skillfolio — Students Portfolio & Projects</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillSphere - Student Portfolio Platform</title>
+    <meta name="description" content="Join thousands of students showcasing their skills and projects on SkillSphere. Build your professional portfolio, connect with peers, and discover opportunities." />
+    <meta name="author" content="SkillSphere" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta property="og:title" content="SkillSphere - Student Portfolio Platform" />
+    <meta property="og:description" content="Join thousands of students showcasing their skills and projects. Build your professional portfolio and connect with opportunities." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
 
-  <!-- Google Identity Services -->
-  <!-- Replace YOUR_GOOGLE_CLIENT_ID below with your actual client id -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-</head>
-<body>
-  <div class="page-bg">
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo-blob">✶</div>
-        <span>Gava-ish</span>
-      </div>
-      <nav class="navlinks">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#story">Story</a>
-        <a href="#help">Help</a>
-      </nav>
-
-      <div class="auth-area">
-        <!-- Google Sign-in button root -->
-        <div id="g_id_onload"
-             data-client_id="YOUR_GOOGLE_CLIENT_ID"
-             data-callback="handleCredentialResponse"
-             data-auto_prompt="false">
-        </div>
-        <div class="g_id_signin" id="googleButton"></div>
-
-        <div id="signedInUI" class="signed-in hidden">
-          <img id="userPic" class="user-pic" src="" alt="user">
-          <span id="userName" class="user-name"></span>
-          <button id="signOutBtn" class="btn small">Sign out</button>
-        </div>
-      </div>
-    </header>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero-left">
-          <h1>Showcase Your Skills. Share Your Projects.</h1>
-          <p class="lead">
-            Create a student profile, list your skills and mini-projects — connect with peers, recruiters and mentors.
-          </p>
-
-          <div class="cta-row">
-            <button id="createProfileBtn" class="btn primary">Create / Edit Profile</button>
-            <a href="#projects" class="btn ghost">Browse Projects</a>
-          </div>
-
-          <div class="partners">
-            <small>Our Partners</small>
-            <div class="logos">
-              <div class="logo">logoipsum</div>
-              <div class="logo">logoipsum</div>
-              <div class="logo">logoipsum</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <!-- simple illustration / placeholder -->
-          <div class="illustration">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="10" width="180" height="180" rx="12" fill="none" stroke="#111" stroke-opacity="0.15"/>
-              <g transform="translate(30,30)" fill="none" stroke="#111" stroke-width="2">
-                <circle cx="60" cy="40" r="28" />
-                <path d="M20 140 q40 -30 80 0" />
-                <rect x="8" y="60" width="104" height="60" rx="8" />
-              </g>
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      <!-- Profile & Project forms modal -->
-      <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-        <div class="modal-card">
-          <button class="close-modal" id="closeModal">&times;</button>
-
-          <div id="profileForm" class="form-block">
-            <h3>My Profile</h3>
-            <label>
-              Display name
-              <input id="profileName" type="text" placeholder="Your name">
-            </label>
-            <label>
-              Bio
-              <textarea id="profileBio" placeholder="A short bio (1-2 lines)"></textarea>
-            </label>
-            <label>
-              Skills (comma separated)
-              <input id="profileSkills" placeholder="e.g. Java, Flutter, Video Editing">
-            </label>
-            <button id="saveProfile" class="btn primary full">Save Profile</button>
-          </div>
-
-          <div id="projectForm" class="form-block hidden">
-            <h3>Post Project</h3>
-            <label>
-              Title
-              <input id="projectTitle" type="text" placeholder="Project title">
-            </label>
-            <label>
-              Description
-              <textarea id="projectDesc" placeholder="Short description"></textarea>
-            </label>
-            <label>
-              Image URL (optional)
-              <input id="projectImage" placeholder="https://...">
-            </label>
-            <label>
-              Tags (comma separated)
-              <input id="projectTags" placeholder="web, dsa, flutter">
-            </label>
-            <div class="form-actions">
-              <button id="saveProject" class="btn primary">Post Project</button>
-              <button id="showProfileForm" class="btn ghost">Profile</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Projects feed -->
-      <section id="projects" class="projects-section">
-        <div class="projects-header">
-          <h2>Projects</h2>
-          <div>
-            <button id="openProjectForm" class="btn primary">New Project</button>
-            <input id="searchInput" placeholder="Search projects or tags..." />
-          </div>
-        </div>
-
-        <div id="projectsGrid" class="projects-grid">
-          <!-- project cards injected here -->
-        </div>
-      </section>
-
-      <!-- Story section -->
-      <section id="story" class="story">
-        <h2>Story About Us</h2>
-        <p>We built a simple place where students can show their skills and small projects. This helps them build a public portfolio quickly.</p>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <small>Made for hackathon • Prototype • Local demo</small>
-    </footer>
-  </div>
-
-  <!-- Scripts -->
-  <script src="scripts.js" defer></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
