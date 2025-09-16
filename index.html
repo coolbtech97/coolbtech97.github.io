@@ -1,24 +1,943 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SkillSphere - Student Portfolio Platform</title>
-    <meta name="description" content="Join thousands of students showcasing their skills and projects on SkillSphere. Build your professional portfolio, connect with peers, and discover opportunities." />
-    <meta name="author" content="SkillSphere" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COOL | Professional Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e8f6d4a7.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary: #4a6cf7;
+      --secondary: #2a3b7c;
+      --accent: #ffcc68;
+      --bg: #f9fafb;
+      --light-bg: #ffffff;
+      --text: #333333;
+      --light-text: #777777;
+      --dark-bg: #0f172a;
+      --dark-secondary: #1e293b;
+      --dark-text: #e2e8f0;
+      --dark-light-text: #94a3b8;
+      --transition: all 0.3s ease;
+    }
 
-    <meta property="og:title" content="SkillSphere - Student Portfolio Platform" />
-    <meta property="og:description" content="Join thousands of students showcasing their skills and projects. Build your professional portfolio and connect with opportunities." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: var(--transition);
+    }
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--light-bg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0px 15px 10px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* Logo special styling */
+    .logo-text {
+      font-size: 29px; /* 20% larger than the original 24px */
+      background: linear-gradient(45deg, var(--primary), #9f7aea, #4299e1);
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 3s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .toggle-mode {
+      background: transparent;
+      color: var(--text);
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-left: 15px;
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 150px 0 100px;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-text h1 span {
+      color: var(--primary);
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: var(--light-text);
+      margin-bottom: 30px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: 6px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--secondary);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      flex: 1;
+      text-align: center;
+      min-width: 300px;
+    }
+
+    .hero-image img {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    }
+
+    /* About Section */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: var(--primary);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .about-text h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .skill-item {
+      margin-bottom: 20px;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 10px;
+      background-color: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background-color: var(--primary);
+      border-radius: 5px;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background-color: var(--light-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
+    }
+
+    .project-info {
+      padding: 20px;
+    }
+
+    .project-info h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .project-info p {
+      color: var(--light-text);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .project-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .project-links a i {
+      margin-right: 5px;
+    }
+
+    /* Contact Section */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .contact-info {
+      background-color: var(--light-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .contact-info h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .info-item i {
+      font-size: 20px;
+      color: var(--primary);
+      margin-right: 15px;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(74, 108, 247, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    /* Added styles for social links fallback */
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(74, 108, 247, 0.1);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .social-links a .icon-fallback {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    .social-links a:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    .social-links a:hover .icon-fallback {
+      display: block;
+    }
+
+    .contact-form {
+      background-color: var(--light-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .contact-form h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      font-family: 'Poppins', sans-serif;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--secondary);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .footer p {
+      margin-bottom: 15px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    .dark-mode .navbar,
+    .dark-mode .project-card,
+    .dark-mode .contact-info,
+    .dark-mode .contact-form {
+      background-color: var(--dark-secondary);
+      color: var(--dark-text);
+    }
+
+    .dark-mode .nav-links a,
+    .dark-mode .toggle-mode {
+      color: var(--dark-text);
+    }
+
+    .dark-mode .hero-text p,
+    .dark-mode .project-info p {
+      color: var(--dark-light-text);
+    }
+
+    .dark-mode .form-control {
+      background-color: var(--dark-bg);
+      border-color: #4b5563;
+      color: var(--dark-text);
+    }
+
+    /* Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+    }
+
+    @media screen and (min-width: 769px) {
+      .mobile-nav {
+        display: none !important; /* Always hide on desktop regardless of active state */
+      }
+      
+      .mobile-menu {
+        display: none;
+      }
+    }
+
+    /* Mobile Navigation Fix - Updated */
+    .mobile-nav {
+      position: fixed;
+      top: 60px;  /* Adjusted top position */
+      left: 0;
+      width: 100%;
+      background-color: var(--light-bg);
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 1001;  /* Higher z-index to ensure visibility */
+    }
+
+    .mobile-nav.active {
+      display: block;
+    }
+
+    .mobile-nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mobile-nav li {
+      margin-bottom: 15px;
+      text-align: center;  /* Center the menu items */
+    }
+
+    .mobile-nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      padding: 10px 0;
+      font-size: 18px;  /* Larger font size for better tap targets */
+    }
+
+    .dark-mode .mobile-nav {
+      background-color: var(--dark-secondary);
+    }
+
+    .dark-mode .mobile-nav a {
+      color: var(--dark-text);
+    }
+
+    /* Make the mobile menu icon more prominent */
+    .mobile-menu {
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .mobile-menu:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href="#" class="logo"><span class="logo-text">Cool</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div>
+      <button class="toggle-mode" onclick="toggleMode()">
+        <i class="fas fa-moon"></i>
+      </button>
+      <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-nav">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text fade-in">
+        <h1>Hi, I'm <span>Anand</span></h1>
+        <p>Software Developer & Computer Science Student</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-outline">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-image fade-in">
+        <!-- <img src="https://github.com/coolbhaiya97/cv/blob/main/anandpic1.png?raw=true" alt="Profile Picture"> -->
+        <img src="./profile-pic.png" alt="Profile Picture">
+        <!-- Placeholder image, replace with actual image path -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>About Me</h2>
+    </div>
+    <div class="about-content">
+      <div class="about-text fade-in">
+        <h3>Who am I?</h3>
+        <p>Hello! I'm a passionate Computer Science student specializing in software development. I'm currently pursuing my B.Tech degree in Computer Science Engineering at JBIT.</p>
+        <p>I love solving complex problems and turning ideas into reality through code. My goal is to create efficient, user-friendly applications that make a positive impact.</p>
+      </div>
+      <div class="skills fade-in">
+        <h3>My Skills</h3>
+        <div class="skill-item">
+          <div class="skill-info">
+            <h4>C++</h4>
+            <span>70%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 70%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-info">
+            <h4>HTML/CSS</h4>
+            <span>75%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 75%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-info">
+            <h4>JavaScript</h4>
+            <span>20%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 20%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-info">
+            <h4>Data Structures</h4>
+            <span>80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 80%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section" style="background-color: #f3f4f6;">
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>My Projects</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card fade-in">
+        <div class="project-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6ve2aSBaAMYt2xKyOnmlreEFtwnaFqIzFSw&s" alt="Binary Search Algorithm Image">
+        </div>
+        <div class="project-info">
+          <h3>Binary Search Algorithm</h3>
+          <p>Efficient implementation of binary search in both 1D and 2D arrays with time complexity analysis.</p>
+          <div class="project-links">
+            <!-- <a href="#"><i class="fab fa-github"></i> Source Code</a>
+            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-image">
+          <img src="https://codehalweb.com/wp-content/uploads/2023/05/thumbnail.png" alt="Personal Portfolio Website Image">
+        </div>
+        <div class="project-info">
+          <h3>Personal Portfolio Website</h3>
+          <p>Responsive portfolio website built with HTML, CSS, and JavaScript featuring dark mode.  <a href="./portfolio/" target="_blank" style="color: var(--primary); font-weight: 500;">View my Portfolio <i class="fas fa-external-link-alt"></i></a></p>
+          <div class="project-links">
+            <!-- <a href="#"><i class="fab fa-github"></i> Source Code</a>
+            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-image">
+          <img src="data:image/jpeg;base64,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" alt="Data Structure Visualizer Image">
+        </div>
+        <div class="project-info">
+          <h3>DSA in C++</h3>
+          <p>Comprehensive Data Structures & Algorithms in C++ with detailed implementation notes and optimized solutions. This project showcases my problem-solving skills and clean coding practices. <a href="https://github.com/coolbtech97/COOL_CODING/tree/main/2.%20Coder%20Army%20C%2B%2B" target="_blank" style="color: var(--primary); font-weight: 500;">View my complete DSA collection <i class="fas fa-external-link-alt"></i></a></p>
+          <div class="project-links">
+            <!-- <a href="#"><i class="fab fa-github"></i> Source Code</a>
+            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>Contact Me</h2>
+    </div>
+    <div class="contact-wrapper">
+      <div class="contact-info fade-in">
+        <h3>Get In Touch</h3>
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>Kathoun, Rajoun, Banka, 813107</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <p>coolbtech97@gmail.com</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <p>+91 82710xxxxx</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-graduation-cap"></i>
+          <p>B.Tech CSE, JBIT</p>
+        </div>
+        
+        <!-- Add Social Links Heading -->
+        <h4 style="margin-top: 25px; margin-bottom: 10px; color: var(--primary);">SOCIAL LINKS</h4>
+        
+        <div class="social-links">
+          <a href="https://www.instagram.com/__cool__boy_97" target="_blank" title="Instagram"><i class="fab fa-instagram"></i><span class="icon-fallback">Instagram</span></a>
+          <a href="https://wa.me/918271000000" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i><span class="icon-fallback">WhatsApp</span></a>
+          <a href="https://github.com/coolbtech97/COOL_CODING" target="_blank" title="GitHub"><i class="fab fa-github"></i><span class="icon-fallback">GitHub</span></a>
+          <a href="https://www.linkedin.com/in/coolbtech97/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i><span class="icon-fallback">LinkedIn</span></a>
+        </div>
+      </div>
+      <div class="contact-form fade-in">
+        <h3>Send Me a Message</h3>
+        <form action="https://formsubmit.co/tbikash.rajoun2@gmail.com" method="POST" onsubmit="return confirmMessage()">
+          <input type="hidden" name="_next" value="https://coolbtech97.github.io/thank-you.html">
+          <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="number">Your Phone Number</label>
+            <input type="tel" id="number" name="number" class="form-control" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 COOL. All Rights Reserved.</p>
+    <p>Computer Science Engineer | Web Developer</p>
+    <div class="footer-links">
+      <a href="https://github.com/coolbtech97" target="_blank">GitHub</a>
+      <a href="#home">Back to Top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dark mode toggle
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.querySelector('.toggle-mode i');
+    
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+      icon.className = 'fas fa-sun';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      icon.className = 'fas fa-moon';
+      localStorage.setItem('theme', 'light');
+    }
+  }
+  
+  // Check saved theme preference
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    document.querySelector('.toggle-mode i').className = 'fas fa-sun';
+  }
+  
+  // Improved mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle with explicit display control
+    const mobileMenuBtn = document.querySelector('.mobile-menu');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if (mobileMenuBtn && mobileNav) {
+      mobileMenuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();  // Prevent event bubbling
+        mobileNav.classList.toggle('active');
+        console.log('Mobile menu clicked, active state:', mobileNav.classList.contains('active'));
+      });
+      
+      // Close mobile menu when clicking elsewhere
+      document.addEventListener('click', function(e) {
+        if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          mobileNav.classList.remove('active');
+        }
+      });
+    }
+  });
+  
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+      
+      // Close mobile menu if open
+      document.querySelector('.mobile-nav').classList.remove('active');
+    });
+  });
+  
+  // Form submission - updated to allow actual form submission
+  function confirmMessage() {
+    alert("Thank you for your message! You'll be redirected after submission.");
+    return true; // Allow the form to submit
+  }
+  
+  // Animation on scroll
+  const fadeElements = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  fadeElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
 </html>
