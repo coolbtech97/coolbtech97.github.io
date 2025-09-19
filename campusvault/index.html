@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusVaults Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <h2>CampusVaults</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> Academics</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Clubs</a></li>
+                    <li><a href="#"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Dashboard</h1>
+                <div class="user-profile">
+                    <p>Hello, Scholar!</p>
+                    <div class="profile-pic"></div>
+                </div>
+            </header>
+
+            <section class="quick-stats">
+                <div class="stat-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div>
+                        <h3>My Classes</h3>
+                        <p>5 active</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-tasks"></i>
+                    <div>
+                        <h3>Assignments</h3>
+                        <p>2 pending</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar-day"></i>
+                    <div>
+                        <h3>Upcoming Events</h3>
+                        <p>3 this week</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <h3>Certificates</h3>
+                        <p>7 total</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="charts-section">
+                <div class="chart-container">
+                    <h3>Weekly Engagement</h3>
+                    <canvas id="weeklyEngagementChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Activity Breakdown</h3>
+                    <canvas id="activityBreakdownChart"></canvas>
+                </div>
+            </section>
+
+            <section class="subjects-section">
+                <h2>My Subjects</h2>
+                <div class="subject-list">
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <h3>PDP</h3>
+                            <span class="professor">Prof. A. Jain</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 70%;"></div>
+                        </div>
+                        <p class="progress-label">Syllabus Covered: 70%</p>
+                        <ul class="subject-info">
+                            <li><a href="#"><i class="fas fa-file-alt"></i> Syllabus</a></li>
+                            <li><a href="#"><i class="fas fa-book-open"></i> Notes</a></li>
+                            <li><a href="#"><i class="fas fa-clipboard-list"></i> Assignments</a></li>
+                        </ul>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <h3>Python Programming Lab</h3>
+                            <span class="professor">Prof. K. Gupta</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 85%;"></div>
+                        </div>
+                        <p class="progress-label">Syllabus Covered: 85%</p>
+                        <ul class="subject-info">
+                            <li><a href="#"><i class="fas fa-file-alt"></i> Syllabus</a></li>
+                            <li><a href="#"><i class="fas fa-book-open"></i> Notes</a></li>
+                            <li><a href="#"><i class="fas fa-clipboard-list"></i> Assignments</a></li>
+                        </ul>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <h3>OOP Lab</h3>
+                            <span class="professor">Prof. V. Sharma</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 60%;"></div>
+                        </div>
+                        <p class="progress-label">Syllabus Covered: 60%</p>
+                        <ul class="subject-info">
+                            <li><a href="#"><i class="fas fa-file-alt"></i> Syllabus</a></li>
+                            <li><a href="#"><i class="fas fa-book-open"></i> Notes</a></li>
+                            <li><a href="#"><i class="fas fa-clipboard-list"></i> Assignments</a></li>
+                        </ul>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <h3>DSA Lab</h3>
+                            <span class="professor">Prof. R. Patel</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 95%;"></div>
+                        </div>
+                        <p class="progress-label">Syllabus Covered: 95%</p>
+                        <ul class="subject-info">
+                            <li><a href="#"><i class="fas fa-file-alt"></i> Syllabus</a></li>
+                            <li><a href="#"><i class="fas fa-book-open"></i> Notes</a></li>
+                            <li><a href="#"><i class="fas fa-clipboard-list"></i> Assignments</a></li>
+                        </ul>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <h3>Digital Electronics</h3>
+                            <span class="professor">Prof. N. Jain</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 50%;"></div>
+                        </div>
+                        <p class="progress-label">Syllabus Covered: 50%</p>
+                        <ul class="subject-info">
+                            <li><a href="#"><i class="fas fa-file-alt"></i> Syllabus</a></li>
+                            <li><a href="#"><i class="fas fa-book-open"></i> Notes</a></li>
+                            <li><a href="#"><i class="fas fa-clipboard-list"></i> Assignments</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
