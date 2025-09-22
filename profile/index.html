@@ -536,7 +536,12 @@
             <div class="contact-image fade-in">
               <img src="./image.png" alt="Contact Us - Professional Web Development Services">
             </div>
-            <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+            <form class="contact-form fade-in" action="https://formsubmit.co/tbikash.rajoun2@gmail.com" method="POST">
+              <input type="hidden" name="_next" value="https://coolbtech97.github.io/profile/thank-you.html">
+              <input type="hidden" name="_subject" value="New Contact Form Submission from Profile Website">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="text" name="_honey" style="display:none">
+              
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Your Name" required>
@@ -619,17 +624,6 @@
       document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
       });
-
-      // Form submission handler
-      function handleSubmit(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData.entries());
-        
-        // Simulate form submission
-        alert('Thank you for your message! We\'ll get back to you soon.');
-        event.target.reset();
-      }
 
       // Mobile menu toggle
       function toggleMobileMenu() {
