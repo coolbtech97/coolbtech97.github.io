@@ -73,6 +73,24 @@
         transition: all 0.3s ease;
         padding: 0.5rem 1rem;
         border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-links a::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-links a:hover::before {
+        width: 80%;
       }
 
       .nav-links a:hover {
@@ -101,8 +119,10 @@
       }
 
       @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-10px) rotate(1deg); }
+        50% { transform: translateY(-20px) rotate(0deg); }
+        75% { transform: translateY(-15px) rotate(-1deg); }
       }
 
       .hero-content {
@@ -113,43 +133,182 @@
       .hero h1 {
         font-size: 3.5rem;
         margin-bottom: 1rem;
-        animation: slideInUp 1s ease;
+        animation: bounceIn 1.2s ease-out;
+        background: linear-gradient(45deg, #fff, #667eea, #fff);
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: bounceIn 1.2s ease-out, shimmer 3s ease-in-out infinite;
+      }
+
+      @keyframes shimmer {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
       }
 
       .hero p {
         font-size: 1.2rem;
         margin-bottom: 2rem;
         opacity: 0.9;
-        animation: slideInUp 1s ease 0.2s both;
+        animation: slideInUp 1s ease 0.3s both;
       }
 
       .cta-button {
         display: inline-block;
-        background: #ff6b6b;
+        background: linear-gradient(45deg, #ff6b6b, #ff8e53);
         color: white;
         padding: 15px 30px;
         text-decoration: none;
         border-radius: 50px;
         font-weight: bold;
-        transition: all 0.3s ease;
-        animation: slideInUp 1s ease 0.4s both;
+        transition: all 0.4s ease;
+        animation: slideInUp 1s ease 0.6s both, pulse 2s infinite 2s;
+        position: relative;
+        overflow: hidden;
       }
 
-      .cta-button:hover {
-        background: #ff5252;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.6s;
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
       }
 
       @keyframes slideInUp {
         from {
           opacity: 0;
-          transform: translateY(50px);
+          transform: translateY(50px) scale(0.9);
         }
         to {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(0) scale(1);
         }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes bounceIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.3) translateY(50px);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.1) translateY(-10px);
+        }
+        70% {
+          transform: scale(0.9) translateY(5px);
+        }
+        100% {
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+
+      @keyframes glow {
+        0%, 100% {
+          box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+        }
+      }
+
+      @keyframes wiggle {
+        0%, 7%, 14%, 21%, 28%, 35%, 42%, 49%, 56%, 63%, 70%, 77%, 84%, 91%, 98%, 100% {
+          transform: rotate(0deg);
+        }
+        3.5%, 10.5%, 17.5%, 24.5%, 31.5%, 38.5%, 45.5%, 52.5%, 59.5%, 66.5%, 73.5%, 80.5%, 87.5%, 94.5% {
+          transform: rotate(3deg);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: bounceIn 1.2s ease-out;
+        background: linear-gradient(45deg, #fff, #667eea, #fff);
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: bounceIn 1.2s ease-out, shimmer 3s ease-in-out infinite;
+      }
+
+      @keyframes shimmer {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        animation: slideInUp 1s ease 0.3s both;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.4s ease;
+        animation: slideInUp 1s ease 0.6s both, pulse 2s infinite 2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.6s;
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
       }
 
       .section {
@@ -175,30 +334,42 @@
         padding: 2rem;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         border: 1px solid #f0f0f0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+        transition: left 0.6s ease;
+      }
+
+      .service-card:hover::before {
+        left: 0;
       }
 
       .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-15px) scale(1.02) rotateX(5deg);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
       }
 
       .service-icon {
         font-size: 3rem;
         margin-bottom: 1rem;
         color: #667eea;
+        transition: all 0.3s ease;
       }
 
-      .service-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: #333;
-      }
-
-      .service-card p {
-        color: #666;
-        line-height: 1.6;
+      .service-card:hover .service-icon {
+        transform: scale(1.1);
+        color: #764ba2;
       }
 
       .about {
@@ -216,12 +387,13 @@
         border-radius: 15px;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
       }
 
       .portfolio-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       }
 
       .portfolio-image {
@@ -229,21 +401,25 @@
         background: linear-gradient(45deg, #667eea, #764ba2);
         position: relative;
         overflow: hidden;
+        transition: all 0.3s ease;
       }
 
-      .portfolio-content {
-        padding: 1.5rem;
+      .portfolio-item:hover .portfolio-image {
+        background: linear-gradient(45deg, #764ba2, #667eea);
       }
 
-      .portfolio-content h3 {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-        color: #333;
+      .portfolio-image::after {
+        content: '🚀';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        font-size: 3rem;
+        transition: all 0.3s ease;
       }
 
-      .portfolio-content p {
-        color: #666;
-        margin-bottom: 1rem;
+      .portfolio-item:hover .portfolio-image::after {
+        transform: translate(-50%, -50%) scale(1);
       }
 
       .tech-stack {
@@ -259,6 +435,30 @@
         border-radius: 20px;
         font-size: 0.8rem;
         font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tech-tag::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        transition: left 0.3s ease;
+        z-index: -1;
+      }
+
+      .tech-tag:hover {
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .tech-tag:hover::before {
+        left: 0;
       }
 
       .contact {
@@ -406,7 +606,8 @@
 
       .footer-links a:hover {
         color: #667eea;
-        transform: translateX(5px);
+        transform: translateX(10px);
+        text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
       }
 
       .footer-links a i {
@@ -430,15 +631,34 @@
         justify-content: center;
         color: #b8c5d6;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border-radius: 50%;
+        transform: scale(0);
+        transition: transform 0.3s ease;
+        z-index: -1;
+      }
+
+      .social-link:hover::before {
+        transform: scale(1);
       }
 
       .social-link:hover {
-        background: linear-gradient(45deg, #667eea, #764ba2);
         color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        transform: translateY(-5px) rotate(360deg);
+        box-shadow: 0 15px 25px rgba(102, 126, 234, 0.4);
       }
 
       .contact-info {
@@ -492,13 +712,30 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
         font-weight: 500;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .newsletter button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s;
+      }
+
+      .newsletter button:hover::before {
+        left: 100%;
       }
 
       .newsletter button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
       }
 
       .footer-bottom {
@@ -562,14 +799,75 @@
 
       .fade-in {
         opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s ease;
+        transform: translateY(50px);
+        transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .fade-in.visible {
         opacity: 1;
         transform: translateY(0);
       }
+
+      .fade-in:nth-child(even) {
+        transform: translateX(-50px);
+      }
+
+      .fade-in:nth-child(odd) {
+        transform: translateX(50px);
+      }
+
+      .fade-in.visible:nth-child(even),
+      .fade-in.visible:nth-child(odd) {
+        transform: translateX(0);
+      }
+
+      /* Add staggered animation delays */
+      .service-card:nth-child(1) { animation-delay: 0.1s; }
+      .service-card:nth-child(2) { animation-delay: 0.2s; }
+      .service-card:nth-child(3) { animation-delay: 0.3s; }
+      .service-card:nth-child(4) { animation-delay: 0.4s; }
+      .service-card:nth-child(5) { animation-delay: 0.5s; }
+      .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+      .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+      .portfolio-item:nth-child(2) { animation-delay: 0.3s; }
+      .portfolio-item:nth-child(3) { animation-delay: 0.5s; }
+
+      /* Navbar animation enhancement */
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-links a::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-links a:hover::before {
+        width: 80%;
+      }
+
+      /* Contact form animation */
+      .form-group input:focus,
+      .form-group textarea:focus {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      }
+
+      /* ...existing code... */
     </style>
   </head>
 
@@ -833,22 +1131,91 @@
         }
       });
 
-      // Intersection Observer for fade-in animations
+      // Enhanced intersection observer with staggered animations
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
       };
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100); // Stagger animations
           }
         });
       }, observerOptions);
 
       document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
+      });
+
+      // Enhanced service card interactions
+      document.querySelectorAll('.service-card').forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-15px) scale(1.02) rotateX(5deg)';
+          card.style.zIndex = '10';
+          
+          // Add ripple effect
+          const ripple = document.createElement('div');
+          ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+          `;
+          
+          const rect = card.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = (rect.width / 2 - size / 2) + 'px';
+          ripple.style.top = (rect.height / 2 - size / 2) + 'px';
+          
+          card.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
+          card.style.zIndex = '1';
+        });
+      });
+
+      // Add ripple animation CSS
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes ripple {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Enhanced parallax effect
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.3;
+        
+        const hero = document.querySelector('.hero');
+        if (hero) {
+          hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+
+        // Parallax for other elements
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            card.style.transform = `translateY(${scrolled * 0.05 * (index % 2 === 0 ? 1 : -1)}px)`;
+          }
+        });
       });
 
       // Form submission handler
@@ -879,27 +1246,7 @@
         }
       }
 
-      // Add some interactive effects
-      document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-          card.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'translateY(0) scale(1)';
-        });
-      });
-
-      // Parallax effect for hero section
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        if (hero) {
-          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-      });
-
-      // Newsletter subscription handler
+      // Enhanced newsletter subscription handler
       function handleNewsletter(event) {
         event.preventDefault();
         const email = event.target.querySelector('input[type="email"]').value;
