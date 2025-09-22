@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Development Services - Professional Web Solutions</title>
+    <meta name="description" content="Professional web development services including responsive design, modern frameworks, and cutting-edge solutions" />
+    <meta name="author" content="CoolBtech97" />
+
+    <meta property="og:title" content="Web Development Services - Professional Solutions" />
+    <meta property="og:description" content="Modern web development with responsive design and latest technologies" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@coolbtech97" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+      }
+
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 150px 0 100px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: slideInUp 1s ease;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        animation: slideInUp 1s ease 0.2s both;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: #ff6b6b;
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        animation: slideInUp 1s ease 0.4s both;
+      }
+
+      .cta-button:hover {
+        background: #ff5252;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #333;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .service-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid #f0f0f0;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #667eea;
+      }
+
+      .service-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .service-card p {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .about {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .portfolio-item {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .portfolio-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .portfolio-image {
+        height: 200px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .portfolio-content {
+        padding: 1.5rem;
+      }
+
+      .portfolio-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+
+      .portfolio-content p {
+        color: #666;
+        margin-bottom: 1rem;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .tech-tag {
+        background: #f0f2f5;
+        color: #667eea;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .contact {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: end;
+        margin-top: 3rem;
+      }
+
+      .contact-image {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .contact-image img {
+        max-width: 100%;
+        height: auto;
+        width: 400px;
+        transition: all 0.3s ease;
+      }
+
+      .contact-image img:hover {
+        transform: scale(1.05);
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        backdrop-filter: blur(10px);
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .submit-btn {
+        background: #ff6b6b;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+      }
+
+      footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      .mobile-menu {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        
+        .mobile-menu {
+          display: block;
+        }
+        
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        
+        .services-grid,
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-wrapper {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .contact-image {
+          order: -1;
+        }
+
+        .contact-image img {
+          width: 300px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .contact-image img {
+          width: 250px;
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header id="header">
+      <nav class="container">
+        <a href="#" class="logo">CoolBtech97</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-content container">
+          <h1>Modern Web Development</h1>
+          <p>Creating stunning, responsive, and performance-optimized websites with cutting-edge technologies</p>
+          <a href="#contact" class="cta-button">Start Your Project</a>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="container">
+          <h2 class="fade-in">Our Services</h2>
+          <div class="services-grid">
+            <div class="service-card fade-in">
+              <div class="service-icon">🌐</div>
+              <h3>Responsive Web Design</h3>
+              <p>Beautiful, mobile-first designs that work perfectly on all devices and screen sizes.</p>
+            </div>
+            <div class="service-card fade-in">
+              <div class="service-icon">⚡</div>
+              <h3>Frontend Development</h3>
+              <p>Modern JavaScript frameworks like React, Vue, and Angular for dynamic user experiences.</p>
+            </div>
+            <div class="service-card fade-in">
+              <div class="service-icon">🚀</div>
+              <h3>Backend Solutions</h3>
+              <p>Robust server-side applications with Node.js, Python, and cloud-based architectures.</p>
+            </div>
+            <div class="service-card fade-in">
+              <div class="service-icon">🔧</div>
+              <h3>Full-Stack Development</h3>
+              <p>Complete web solutions from database design to user interface implementation.</p>
+            </div>
+            <div class="service-card fade-in">
+              <div class="service-icon">📱</div>
+              <h3>Progressive Web Apps</h3>
+              <p>App-like experiences that work offline and provide native mobile functionality.</p>
+            </div>
+            <div class="service-card fade-in">
+              <div class="service-icon">🔍</div>
+              <h3>SEO Optimization</h3>
+              <p>Search engine optimization to improve your website's visibility and ranking.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div class="container">
+          <h2 class="fade-in">About Us</h2>
+          <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #555;" class="fade-in">
+              We are passionate web developers dedicated to creating exceptional digital experiences. 
+              With years of expertise in modern web technologies, we transform your ideas into 
+              powerful, scalable, and user-friendly websites that drive results.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="section">
+        <div class="container">
+          <h2 class="fade-in">Portfolio</h2>
+          <div class="portfolio-grid">
+            <div class="portfolio-item fade-in">
+              <div class="portfolio-image"></div>
+              <div class="portfolio-content">
+                <h3>E-commerce Platform</h3>
+                <p>A modern online shopping platform with advanced features and secure payment integration.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">React</span>
+                  <span class="tech-tag">Node.js</span>
+                  <span class="tech-tag">MongoDB</span>
+                  <span class="tech-tag">Stripe</span>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item fade-in">
+              <div class="portfolio-image"></div>
+              <div class="portfolio-content">
+                <h3>University Portal</h3>
+                <p>Comprehensive management system for academic institutions with integrated services.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">Vue.js</span>
+                  <span class="tech-tag">Express</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">AWS</span>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item fade-in">
+              <div class="portfolio-image"></div>
+              <div class="portfolio-content">
+                <h3>Real Estate App</h3>
+                <p>Property listing and management application with interactive maps and virtual tours.</p>
+                <div class="tech-stack">
+                  <span class="tech-tag">Angular</span>
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">Django</span>
+                  <span class="tech-tag">Maps API</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="container">
+          <h2 class="fade-in">Get In Touch</h2>
+          <div class="contact-wrapper">
+            <div class="contact-image fade-in">
+              <img src="./profile-pic.png" alt="Contact Us - Professional Web Development Services">
+            </div>
+            <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="project">Project Type</label>
+                <input type="text" id="project" name="project" placeholder="Website, App, E-commerce, etc.">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 CoolBtech97. All rights reserved. | Crafted with ❤️ for the web</p>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Header background on scroll
+      window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) {
+          header.style.background = 'rgba(102, 126, 234, 0.95)';
+        } else {
+          header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        }
+      });
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Form submission handler
+      function handleSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData.entries());
+        
+        // Simulate form submission
+        alert('Thank you for your message! We\'ll get back to you soon.');
+        event.target.reset();
+      }
+
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.style.display === 'flex') {
+          navLinks.style.display = 'none';
+        } else {
+          navLinks.style.display = 'flex';
+          navLinks.style.flexDirection = 'column';
+          navLinks.style.position = 'absolute';
+          navLinks.style.top = '100%';
+          navLinks.style.left = '0';
+          navLinks.style.width = '100%';
+          navLinks.style.background = 'rgba(102, 126, 234, 0.95)';
+          navLinks.style.padding = '1rem';
+        }
+      }
+
+      // Add some interactive effects
+      document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+
+      // Parallax effect for hero section
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero) {
+          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+    </script>
+  </body>
+</html>
