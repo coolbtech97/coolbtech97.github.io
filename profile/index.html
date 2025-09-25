@@ -395,51 +395,35 @@
         position: relative;
       }
 
+      .portfolio-item:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
       .portfolio-image {
         height: 220px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        background: linear-gradient(45deg, #667eea, #764ba2);
         position: relative;
         overflow: hidden;
         transition: all 0.3s ease;
       }
 
-      /* Specific images for each portfolio item */
-      .ecommerce-project .portfolio-image {
-        background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), 
-                         url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-      }
-
-      .university-portal .portfolio-image {
-        background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), 
-                         url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-      }
-
-      .real-estate-app .portfolio-image {
-        background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), 
-                         url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-      }
-
       .portfolio-item:hover .portfolio-image {
-        background-image: linear-gradient(rgba(118, 75, 162, 0.9), rgba(102, 126, 234, 0.9)), 
-                         var(--bg-image);
-        transform: scale(1.1);
+        background: linear-gradient(45deg, #764ba2, #667eea);
       }
 
-      .ecommerce-project:hover .portfolio-image {
-        background-image: linear-gradient(rgba(118, 75, 162, 0.9), rgba(102, 126, 234, 0.9)), 
-                         url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+      .portfolio-image::after {
+        content: '🚀';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        font-size: 3rem;
+        transition: all 0.3s ease;
       }
 
-      .university-portal:hover .portfolio-image {
-        background-image: linear-gradient(rgba(118, 75, 162, 0.9), rgba(102, 126, 234, 0.9)), 
-                         url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-      }
-
-      .real-estate-app:hover .portfolio-image {
-        background-image: linear-gradient(rgba(118, 75, 162, 0.9), rgba(102, 126, 234, 0.9)), 
-                         url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+      .portfolio-item:hover .portfolio-image::after {
+        transform: translate(-50%, -50%) scale(1);
       }
 
       .portfolio-content {
@@ -1055,51 +1039,35 @@
         position: relative;
       }
 
+      .portfolio-item:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
       .portfolio-image {
         height: 220px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        background: linear-gradient(45deg, #667eea, #764ba2);
         position: relative;
         overflow: hidden;
         transition: all 0.3s ease;
       }
 
-      /* Specific images for each portfolio item */
-      .ecommerce-project .portfolio-image {
-        background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), 
-                         url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-      }
-
-      .university-portal .portfolio-image {
-        background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), 
-                         url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-      }
-
-      .real-estate-app .portfolio-image {
-        background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), 
-                         url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-      }
-
       .portfolio-item:hover .portfolio-image {
-        background-image: linear-gradient(rgba(118, 75, 162, 0.9), rgba(102, 126, 234, 0.9)), 
-                         var(--bg-image);
-        transform: scale(1.1);
+        background: linear-gradient(45deg, #764ba2, #667eea);
       }
 
-      .ecommerce-project:hover .portfolio-image {
-        background-image: linear-gradient(rgba(118, 75, 162, 0.9), rgba(102, 126, 234, 0.9)), 
-                         url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+      .portfolio-image::after {
+        content: '🚀';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        font-size: 3rem;
+        transition: all 0.3s ease;
       }
 
-      .university-portal:hover .portfolio-image {
-        background-image: linear-gradient(rgba(118, 75, 162, 0.9), rgba(102, 126, 234, 0.9)), 
-                         url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
-      }
-
-      .real-estate-app:hover .portfolio-image {
-        background-image: linear-gradient(rgba(118, 75, 162, 0.9), rgba(102, 126, 234, 0.9)), 
-                         url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+      .portfolio-item:hover .portfolio-image::after {
+        transform: translate(-50%, -50%) scale(1);
       }
 
       .portfolio-content {
@@ -1289,10 +1257,9 @@
           <h2 class="fade-in">About Us</h2>
           <div style="text-align: center; max-width: 800px; margin: 0 auto;">
             <p style="font-size: 1.1rem; line-height: 1.8; color: #555;" class="fade-in">
-            Hello! I'm a passionate Computer Science student specializing in software development.<br>
-            I'm currently pursuing my B.Tech degree in Computer Science Engineering at JBIT.<br>
-            I love solving complex problems and turning ideas into reality through code.<br>
-            My goal is to create efficient, user-friendly applications that make a positive impact.
+              We are passionate web developers dedicated to creating exceptional digital experiences. 
+              With years of expertise in modern web technologies, we transform your ideas into 
+              powerful, scalable, and user-friendly websites that drive results.
             </p>
           </div>
         </div>
@@ -1302,8 +1269,7 @@
         <div class="container">
           <h2 class="fade-in">Portfolio</h2>
           <div class="portfolio-grid">
-            <!-- Starting Slots -->
-            <div class="portfolio-item ecommerce-project fade-in">
+            <div class="portfolio-item fade-in">
               <div class="portfolio-image"></div>
               <div class="portfolio-content">
                 <h3>E-commerce Platform</h3>
@@ -1316,7 +1282,7 @@
                 </div>
               </div>
             </div>
-            <div class="portfolio-item university-portal fade-in">
+            <div class="portfolio-item fade-in">
               <div class="portfolio-image"></div>
               <div class="portfolio-content">
                 <h3>University Portal</h3>
@@ -1329,7 +1295,7 @@
                 </div>
               </div>
             </div>
-            <div class="portfolio-item real-estate-app fade-in">
+            <div class="portfolio-item fade-in">
               <div class="portfolio-image"></div>
               <div class="portfolio-content">
                 <h3>Real Estate App</h3>
@@ -1446,12 +1412,12 @@
         <div class="footer-bottom">
           <div class="footer-bottom-content">
             <div class="copyright">
-              <p>&copy; 2024 Anand. All rights reserved. | Thanku For Visiting Me</p>
+              <p>&copy; 2024 CoolBtech97. All rights reserved. | Crafted with ❤️ for the web</p>
             </div>
             <nav class="footer-nav">
               <a href="#">Privacy Policy</a>
               <a href="#">Terms of Service</a>
-              <a href="../">Portfolio</a>
+              <a href="#">Sitemap</a>
               <a href="#home">Back to Top</a>
             </nav>
           </div>
