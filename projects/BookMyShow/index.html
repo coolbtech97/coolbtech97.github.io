@@ -1,161 +1,210 @@
-<!DOCTYPE html><html lang="en"><head>    <!-- <link rel="stylesheet" href="./style.css"> --><meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>BookMySHow</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyShow — Movies, Events & Sports</title>
+    <meta name="description" content="BookMyShow clone: browse and search popular movies, events and sports. Responsive UI with accessible search and fast image loading.">
+    <meta name="theme-color" content="#d72e2e">
+    <!-- optional favicon if you add one: <link rel="icon" href="./img/favicon.png"> -->
+
     <style>
-        *{
-    margin:0px;
-    padding: 0px;
-}
-/* LOGO code */
-.logo{
-    display: flex;
-    justify-content: space-between;    background-color: rgb(215,46,46);    align-items: center;    padding: 1rem;
-}.logo .left h1{    color: aliceblue;}.logo button{    margin-left: 0.5rem;
-    border:none;    color: aliceblue;    font-size: 0.8rem;    background-color: rgba(114, 8, 8,0);    /* padding-top: 0.3rem; */
-    cursor: pointer;
-}
-/* SEARCH code */
-.search{
-    padding-top: 1.5rem;
-    display: flex;
-    justify-content: center;    background-color: gray;
-    padding: 2rem 0rem;}.searching{
-    width: 400px;    max-width: 60%;     /* Maximum Width of that search bar */
-    font-size: 1rem;
-    padding: .5rem;    margin-right: .4rem;    border-radius: 4px;
-}
-.search > button{
-    font-size: 1rem;
-    margin-left: .5rem;
-    background-color: rgb(215,46,46);
-    color: aliceblue;
-    padding: .5rem;
-    border:5px;
-    border-radius: 10px;
-}
-.hero{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: url(./img/back-image-long.jpeg);
-    padding: 2rem 0rem;
-    h2{
-        color:white;
-        max-width: 95%;
-        font-size: 2rem;
-        background-color: black;
-    }
-    button{
-        /* border: none; */
-        background-color: rgb(215,46,46/*,0*/);
-        color: aliceblue;
-        font-size: 2rem;
-        margin-top: 1rem;
-        cursor: pointer;
-        padding: .5rem;
-        border-radius: 10px;
-    }
-}
-.mover{
-    text-align: center;
-    padding: 1rem;
-    h2{
-        font-size: 2.8rem;
-        font-weight: bold;
-    }
-}
-.movie{display: flex;
-    /* justify-content: center;  */         /*SOME PROBLEM */
-    /* flex-wrap: wrap; */
-    overflow-x: scroll;     /* SCROLLING FEATURE */
-                            /* x says ONLY SCROLLING ON x Axis */
-    .card{
-        border: .5rem solid rgb(196, 194, 194);border-radius: 10px;
-        padding: 1px 4px;margin: 1px 3px;
-        text-align: center;img{
-        height: 400px;}h3{
-        font-size: 2rem;
-    }}}.bot{
-        margin-top: 2rem;
-    text-align: center;
-    img{max-width: 80%;  /* Maximum Width */
-}}
-/* CODE FOR SHORT DEVICE */
-@media (max-width:443px){
-    .logo{
-        flex-direction: column;
-    }
-    .logo > .right{
-        display: flex;
-        flex-direction: column;
-        padding-top: .392rem;
-        button{
-            padding: .1rem;}}
-    .movie{  flex-direction: column;
-        align-items: center;
-    }
-    .movie > .card{
-        width: max-content;
-    }
-}
+        :root{
+            --brand:#d72e2e;
+            --bg-gray:#f4f4f4;
+            --text:#222;
+            --card-border:#dcdcdc;
+            --max-width:1100px;
+            --gap:1rem;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--text);background:var(--bg-gray);line-height:1.4}
+        a.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+        a.skip-link:focus{position:static;width:auto;height:auto;padding:.5rem;background:#fff;border:2px solid var(--brand);z-index:1000}
+
+        header .logo{
+            display:flex;justify-content:space-between;align-items:center;
+            background:var(--brand);color:#fff;padding:1rem;max-width:var(--max-width);margin:0 auto;border-radius:6px;
+        }
+        .logo .left h1{font-size:1.3rem}
+        .logo .right{display:flex;gap:.5rem}
+        .logo .right button{background:transparent;border:1px solid rgba(255,255,255,.15);color:#fff;padding:.4rem .6rem;border-radius:6px;cursor:pointer}
+        .logo .right button:focus{outline:3px solid rgba(255,255,255,.12)}
+
+        .search{
+            background:linear-gradient(#efefef,#e8e8e8);padding:1.4rem 1rem;border-bottom:1px solid #e0e0e0;
+        }
+        .container{max-width:var(--max-width);margin:0 auto;padding:0 1rem}
+        form.search-form{display:flex;gap:.5rem;justify-content:center;align-items:center}
+        .search-form label{position:absolute;width:1px;height:1px;overflow:hidden}
+        .search-input{
+            width:400px;max-width:100%;padding:.6rem .8rem;border-radius:6px;border:1px solid #ccc;font-size:1rem
+        }
+        .search-form button{background:var(--brand);color:#fff;padding:.6rem .9rem;border-radius:8px;border:none;cursor:pointer}
+        .search-form button:focus{outline:3px solid rgba(215,46,46,.2)}
+
+        .hero{
+            background-image:url(./img/back-image-long.jpeg);background-size:cover;background-position:center;color:#fff;padding:2.5rem 0;text-align:center;
+        }
+        .hero h2{font-size:1.8rem;background:rgba(0,0,0,.45);display:inline-block;padding:.6rem 1rem;border-radius:6px}
+        .hero .cta{display:inline-block;background:var(--brand);color:#fff;padding:.6rem 1rem;border-radius:8px;margin-top:1rem;border:none;cursor:pointer}
+
+        .mover{padding:1.2rem 0;text-align:center}
+        .mover h2{font-size:1.6rem}
+
+        .movie{display:flex;gap:var(--gap);overflow-x:auto;padding:1rem 0}
+        .movie::-webkit-scrollbar{height:10px}
+        .card{min-width:200px;background:#fff;border:1px solid var(--card-border);border-radius:8px;padding:.5rem;text-align:center;flex:0 0 auto;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .card img{width:100%;height:280px;object-fit:cover;border-radius:6px}
+        .card h3{font-size:1rem;margin-top:.6rem}
+
+        .bot{padding:1.2rem 0;text-align:center}
+        .bot img{max-width:100%;border-radius:8px}
+
+        /* responsive */
+        @media (max-width:640px){
+            .logo{flex-direction:column;gap:.5rem}
+            .card img{height:220px}
+        }
+
+        /* accessibility focus */
+        :focus{outline-offset:3px}
     </style>
 </head>
 <body>
-    <header>
-        <div class="head">
-            <!-- logo div -->
-             <div class="logo">
-                <div class="left">
-                    <h1>BookMyShow</h1>
-                </div>
-                <div class="right">
-                    <button>Movies</button>
-                    <button>Events</button>
-                    <button>Sports</button>
-                    <button>More</button>
-                </div>
-             </div>
-            <!--search div -->
-            <div class="search">
-                <input type="text" class="searching" placeholder="search for movies, events, and sports...">
-                <button>Search</button>
+    <a class="skip-link" href="#maincontent">Skip to content</a>
+    <header class="container" role="banner">
+        <div class="logo">
+            <div class="left"><h1>BookMyShow</h1></div>
+            <div class="right" role="navigation" aria-label="Top navigation">
+                <button type="button">Movies</button>
+                <button type="button">Events</button>
+                <button type="button">Sports</button>
+                <button type="button">More</button>
             </div>
         </div>
+
+        <div class="search">
+            <form class="search-form container" role="search" aria-label="Search movies and events" onsubmit="return false;">
+                <label for="site-search">Search</label>
+                <input id="site-search" class="search-input" type="search" name="q" placeholder="Search for movies, events, and sports..." aria-label="Search movies and events">
+                <button id="search-button" type="button" aria-label="Search">Search</button>
+            </form>
+        </div>
     </header>
-    <main>
+
+    <main id="maincontent" class="container" role="main">
         <!-- Hero Section -->
-         <div class="hero">
+        <div class="hero">
             <h2>Experience the Best Movies and Events</h2>
-            <button>Book Now</button>
-         </div><div class="mover">
-            <h2>Popular Movies</h2></div><div class="movie">
+            <button class="cta">Book Now</button>
+        </div>
+
+        <div class="mover"><h2>Popular Movies</h2></div>
+
+        <div class="movie" aria-live="polite">
             <div class="card">
-                <img src="./img/ek-deewane.avif" alt="Ek-Deewane Ki Deewaniyat">
-                <h3>Deewaniyat</h3></div><div class="card"><img src="./img/thamma.avif" alt="Thamma"><h3>Thamma</h3></div>
-    <div class="card"><img src="./img/kantara.avif" alt="Kantara">
-                <h3>Kantara</h3></div><div class="card"><img src="./img/regretting-you.avif" alt="Regretting-You"><h3>Regretting You</h3></div><div class="card">
-                <img src="./img/godday-chaa-2.avif" alt="Godday Godday Chaa 2"><h3>Godday Godday</h3></div><div class="card"><img src="./img/sunny-sanskari.avif" alt="Sunny Sanskari Ki Tulsi Kumari">
-                <h3>Sunny Sanskari</h3></div><div class="card">
-                <img src="./img/jolly-llb-3.avif" alt="Jolly LLB 3">
-                <h3>Jolly LLB 3</h3></div><div class="card">
-                <img src="./img/dfo-diary.avif" alt="DFO Diary">
+                <img src="./img/ek-deewane.avif" alt="Deewaniyat movie poster" loading="lazy">
+                <h3>Deewaniyat</h3>
+            </div>
+            <div class="card">
+                <img src="./img/thamma.avif" alt="Thamma movie poster" loading="lazy">
+                <h3>Thamma</h3>
+            </div>
+            <div class="card">
+                <img src="./img/kantara.avif" alt="Kantara movie poster" loading="lazy">
+                <h3>Kantara</h3>
+            </div>
+            <div class="card">
+                <img src="./img/regretting-you.avif" alt="Regretting You movie poster" loading="lazy">
+                <h3>Regretting You</h3>
+            </div>
+            <div class="card">
+                <img src="./img/godday-chaa-2.avif" alt="Godday Godday Chaa 2 movie poster" loading="lazy">
+                <h3>Godday Godday</h3>
+            </div>
+            <div class="card">
+                <img src="./img/sunny-sanskari.avif" alt="Sunny Sanskari Ki Tulsi Kumari movie poster" loading="lazy">
+                <h3>Sunny Sanskari</h3>
+            </div>
+            <div class="card">
+                <img src="./img/jolly-llb-3.avif" alt="Jolly LLB 3 movie poster" loading="lazy">
+                <h3>Jolly LLB 3</h3>
+            </div>
+            <div class="card">
+                <img src="./img/dfo-diary.avif" alt="DFO Diary movie poster" loading="lazy">
                 <h3>DFO Diary</h3>
             </div>
-         </div><!-- Bottom Area --><div class="bot">
-            <img src="./img/bot.avif" alt="Bottom PIcturE"></div></main></body>
-<div class="mover">
-            <h2>RECENTLY MOVIES</h2></div><div class="movie">
-            <div class="card">
-                <img src="./img/ek-deewane.avif" alt="Ek-Deewane Ki Deewaniyat"><h3>Deewaniyat</h3></div>
-                <div class="card"><img src="./img/thamma.avif" alt="Thamma"><h3>Thamma</h3></div>
-                <div class="card"><img src="./img/kantara.avif" alt="Kantara">
-                <h3>Kantara</h3></div><div class="card"><img src="./img/regretting-you.avif" alt="Regretting-You"><h3>Regretting You</h3></div><div class="card">
-                <img src="./img/godday-chaa-2.avif" alt="Godday Godday Chaa 2"><h3>Godday Godday</h3></div><div class="card"><img src="./img/sunny-sanskari.avif" alt="Sunny Sanskari Ki Tulsi Kumari">
-                <h3>Sunny Sanskari</h3></div><div class="card">
-                <img src="./img/jolly-llb-3.avif" alt="Jolly LLB 3">
-                <h3>Jolly LLB 3</h3></div><div class="card">
-                <img src="./img/dfo-diary.avif" alt="DFO Diary">
-                <h3>DFO Diary</h3>
-            </div>
-         </div>
-         </html>
+        </div>
+
+        <!-- Bottom Area -->
+        <div class="bot">
+            <img src="./img/bot.avif" alt="Promotional banner" loading="lazy">
+        </div>
+    </main>
+
+    <div class="mover">
+        <h2>RECENTLY MOVIES</h2>
+    </div>
+    <div class="movie">
+        <div class="card">
+            <img src="./img/ek-deewane.avif" alt="Deewaniyat movie poster" loading="lazy">
+            <h3>Deewaniyat</h3>
+        </div>
+        <div class="card">
+            <img src="./img/thamma.avif" alt="Thamma movie poster" loading="lazy">
+            <h3>Thamma</h3>
+        </div>
+        <div class="card">
+            <img src="./img/kantara.avif" alt="Kantara movie poster" loading="lazy">
+            <h3>Kantara</h3>
+        </div>
+        <div class="card">
+            <img src="./img/regretting-you.avif" alt="Regretting You movie poster" loading="lazy">
+            <h3>Regretting You</h3>
+        </div>
+        <div class="card">
+            <img src="./img/godday-chaa-2.avif" alt="Godday Godday Chaa 2 movie poster" loading="lazy">
+            <h3>Godday Godday</h3>
+        </div>
+        <div class="card">
+            <img src="./img/sunny-sanskari.avif" alt="Sunny Sanskari Ki Tulsi Kumari movie poster" loading="lazy">
+            <h3>Sunny Sanskari</h3>
+        </div>
+        <div class="card">
+            <img src="./img/jolly-llb-3.avif" alt="Jolly LLB 3 movie poster" loading="lazy">
+            <h3>Jolly LLB 3</h3>
+        </div>
+        <div class="card">
+            <img src="./img/dfo-diary.avif" alt="DFO Diary movie poster" loading="lazy">
+            <h3>DFO Diary</h3>
+        </div>
+    </div>
+
+    <script>
+        (function(){
+            const input = document.getElementById('site-search');
+            const button = document.getElementById('search-button');
+            const cardsContainer = document.querySelector('.movie');
+            const cards = Array.from(document.querySelectorAll('.movie .card'));
+
+            function filterCards(){
+                const q = (input.value || '').trim().toLowerCase();
+                cards.forEach(card => {
+                    const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
+                    card.style.display = title.includes(q) ? '' : 'none';
+                });
+                // announce if no results
+                const anyVisible = cards.some(c => c.style.display !== 'none');
+                cardsContainer.setAttribute('aria-busy', !anyVisible ? 'true' : 'false');
+            }
+
+            button.addEventListener('click', filterCards);
+            input.addEventListener('input', filterCards);
+            input.addEventListener('keydown', function(e){
+                if(e.key === 'Enter'){ e.preventDefault(); filterCards(); }
+            });
+        })();
+    </script>
+</body>
+</html>
