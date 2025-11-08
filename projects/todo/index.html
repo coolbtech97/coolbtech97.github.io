@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    
+  </style>
+</head>
+<body>
+  <div id="all">
+  <h2>📋 To-Do List</h2>
+  <input type="text" id="task" placeholder="Enter a task">
+  <button id="addBtn">➕ Add</button>
+  <ul id="list"></ul>
+  <a href="./index.html">⬅️ Back to Home</a>
+  </div>
+  <script>
+    const taskInput = document.getElementById("task");
+    const listEl = document.getElementById("list");
+    const addBtn = document.getElementById("addBtn");
+    const STORAGE_KEY = 'todo_tasks';
+
+    function renderTasks() {
+      listEl.innerHTML = '';
+      const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      tasks.forEach((t, idx) => {
+        const li = document.createElement('li');
+        li.textContent = t;
+        li.onclick = () => {
+          tasks.splice(idx, 1);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+          renderTasks();
+        };
+        listEl.appendChild(li);
+      });
+    }
+
+    function addTask() {
+      let task = taskInput.value.trim();
+      if (task === "") return;
+      const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      tasks.push(task);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      taskInput.value = "";
+      renderTasks();
+    }
+
+    addBtn.addEventListener('click', addTask);
+    taskInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addTask();
+    });
+
+    document.addEventListener('DOMContentLoaded', renderTasks);
+  </script>
+</body>
+</html>

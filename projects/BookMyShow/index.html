@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head>    <!-- <link rel="stylesheet" href="./style.css"> --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>BookMySHow</title>
+    <style>
+        *{
+    margin:0px;
+    padding: 0px;
+}
+/* LOGO code */
+.logo{
+    display: flex;
+    justify-content: space-between;    background-color: rgb(215,46,46);    align-items: center;    padding: 1rem;
+}.logo .left h1{    color: aliceblue;}.logo button{    margin-left: 0.5rem;
+    border:none;    color: aliceblue;    font-size: 0.8rem;    background-color: rgba(114, 8, 8,0);    /* padding-top: 0.3rem; */
+    cursor: pointer;
+}
+/* SEARCH code */
+.search{
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;    background-color: gray;
+    padding: 2rem 0rem;}.searching{
+    width: 400px;    max-width: 60%;     /* Maximum Width of that search bar */
+    font-size: 1rem;
+    padding: .5rem;    margin-right: .4rem;    border-radius: 4px;
+}
+.search > button{
+    font-size: 1rem;
+    margin-left: .5rem;
+    background-color: rgb(215,46,46);
+    color: aliceblue;
+    padding: .5rem;
+    border:5px;
+    border-radius: 10px;
+}
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(./img/back-image-long.jpeg);
+    padding: 2rem 0rem;
+    h2{
+        color:white;
+        max-width: 95%;
+        font-size: 2rem;
+        background-color: black;
+    }
+    button{
+        /* border: none; */
+        background-color: rgb(215,46,46/*,0*/);
+        color: aliceblue;
+        font-size: 2rem;
+        margin-top: 1rem;
+        cursor: pointer;
+        padding: .5rem;
+        border-radius: 10px;
+    }
+}
+.mover{
+    text-align: center;
+    padding: 1rem;
+    h2{
+        font-size: 2.8rem;
+        font-weight: bold;
+    }
+}
+.movie{display: flex;
+    /* justify-content: center;  */         /*SOME PROBLEM */
+    /* flex-wrap: wrap; */
+    overflow-x: scroll;     /* SCROLLING FEATURE */
+                            /* x says ONLY SCROLLING ON x Axis */
+    .card{
+        border: .5rem solid rgb(196, 194, 194);border-radius: 10px;
+        padding: 1px 4px;margin: 1px 3px;
+        text-align: center;img{
+        height: 400px;}h3{
+        font-size: 2rem;
+    }}}.bot{
+        margin-top: 2rem;
+    text-align: center;
+    img{max-width: 80%;  /* Maximum Width */
+}}
+/* CODE FOR SHORT DEVICE */
+@media (max-width:443px){
+    .logo{
+        flex-direction: column;
+    }
+    .logo > .right{
+        display: flex;
+        flex-direction: column;
+        padding-top: .392rem;
+        button{
+            padding: .1rem;}}
+    .movie{  flex-direction: column;
+        align-items: center;
+    }
+    .movie > .card{
+        width: max-content;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="head">
+            <!-- logo div -->
+             <div class="logo">
+                <div class="left">
+                    <h1>BookMyShow</h1>
+                </div>
+                <div class="right">
+                    <button>Movies</button>
+                    <button>Events</button>
+                    <button>Sports</button>
+                    <button>More</button>
+                </div>
+             </div>
+            <!--search div -->
+            <div class="search">
+                <input type="text" class="searching" placeholder="search for movies, events, and sports...">
+                <button>Search</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Hero Section -->
+         <div class="hero">
+            <h2>Experience the Best Movies and Events</h2>
+            <button>Book Now</button>
+         </div><div class="mover">
+            <h2>Popular Movies</h2></div><div class="movie">
+            <div class="card">
+                <img src="./img/ek-deewane.avif" alt="Ek-Deewane Ki Deewaniyat">
+                <h3>Deewaniyat</h3></div><div class="card"><img src="./img/thamma.avif" alt="Thamma"><h3>Thamma</h3></div>
+    <div class="card"><img src="./img/kantara.avif" alt="Kantara">
+                <h3>Kantara</h3></div><div class="card"><img src="./img/regretting-you.avif" alt="Regretting-You"><h3>Regretting You</h3></div><div class="card">
+                <img src="./img/godday-chaa-2.avif" alt="Godday Godday Chaa 2"><h3>Godday Godday</h3></div><div class="card"><img src="./img/sunny-sanskari.avif" alt="Sunny Sanskari Ki Tulsi Kumari">
+                <h3>Sunny Sanskari</h3></div><div class="card">
+                <img src="./img/jolly-llb-3.avif" alt="Jolly LLB 3">
+                <h3>Jolly LLB 3</h3></div><div class="card">
+                <img src="./img/dfo-diary.avif" alt="DFO Diary">
+                <h3>DFO Diary</h3>
+            </div>
+         </div><!-- Bottom Area --><div class="bot">
+            <img src="./img/bot.avif" alt="Bottom PIcturE"></div></main></body>
+</html>
