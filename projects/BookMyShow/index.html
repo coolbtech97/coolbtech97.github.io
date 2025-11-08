@@ -43,6 +43,14 @@
         .search-form button{background:var(--brand);color:#fff;padding:.6rem .9rem;border-radius:8px;border:none;cursor:pointer}
         .search-form button:focus{outline:3px solid rgba(215,46,46,.2)}
 
+        /* Filters / controls */
+        .controls{display:flex;gap:.5rem;justify-content:center;align-items:center;padding:.8rem 0}
+        .tabs{display:flex;gap:.5rem;flex-wrap:wrap}
+        .tab{background:#fff;border:1px solid #ddd;padding:.4rem .6rem;border-radius:6px;cursor:pointer}
+        .tab[aria-pressed="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+        .sort-select{margin-left:.6rem;padding:.35rem;border-radius:6px;border:1px solid #ccc}
+
+        /* Hero */
         .hero{
             background-image:url(./img/back-image-long.jpeg);background-size:cover;background-position:center;color:#fff;padding:2.5rem 0;text-align:center;
         }
@@ -52,19 +60,36 @@
         .mover{padding:1.2rem 0;text-align:center}
         .mover h2{font-size:1.6rem}
 
-        .movie{display:flex;gap:var(--gap);overflow-x:auto;padding:1rem 0}
-        .movie::-webkit-scrollbar{height:10px}
-        .card{min-width:200px;background:#fff;border:1px solid var(--card-border);border-radius:8px;padding:.5rem;text-align:center;flex:0 0 auto;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-        .card img{width:100%;height:280px;object-fit:cover;border-radius:6px}
+        /* Movie grid (responsive) */
+        .movie{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--gap);padding:1rem 0}
+        .movie.scrollable{overflow-x:auto;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr)}
+        .card{background:#fff;border:1px solid var(--card-border);border-radius:8px;padding:.5rem;text-align:center;position:relative;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .card img{width:100%;height:260px;object-fit:cover;border-radius:6px}
         .card h3{font-size:1rem;margin-top:.6rem}
+        .badge{position:absolute;top:.6rem;left:.6rem;background:rgba(0,0,0,.6);color:#fff;padding:.2rem .5rem;border-radius:4px;font-size:.8rem}
+        .rating{position:absolute;top:.6rem;right:.6rem;background:gold;color:#000;padding:.2rem .5rem;border-radius:4px;font-weight:600}
 
         .bot{padding:1.2rem 0;text-align:center}
         .bot img{max-width:100%;border-radius:8px}
 
+        /* modal */
+        .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:999}
+        .modal[open]{display:flex}
+        .modal-dialog{background:#fff;border-radius:8px;max-width:720px;width:95%;padding:1rem;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+        .modal-header{display:flex;justify-content:space-between;align-items:center}
+        .modal-body{display:flex;gap:1rem;margin-top:.8rem}
+        .modal-body img{width:220px;height:300px;object-fit:cover;border-radius:6px}
+        .modal-close{background:transparent;border:none;font-size:1.2rem;cursor:pointer}
+
+        /* load more */
+        .controls-bottom{display:flex;justify-content:center;padding:1rem}
+        .btn{background:var(--brand);color:#fff;padding:.5rem .9rem;border-radius:8px;border:none;cursor:pointer}
+
         /* responsive */
         @media (max-width:640px){
             .logo{flex-direction:column;gap:.5rem}
-            .card img{height:220px}
+            .card img{height:200px}
+            .modal-body{flex-direction:column;align-items:center}
         }
 
         /* accessibility focus */
@@ -93,6 +118,24 @@
         </div>
     </header>
 
+    <div class="controls container" aria-hidden="false">
+        <div class="tabs" role="tablist" aria-label="Categories">
+            <button class="tab" data-type="all" aria-pressed="true" type="button">All</button>
+            <button class="tab" data-type="movie" aria-pressed="false" type="button">Movies</button>
+            <button class="tab" data-type="event" aria-pressed="false" type="button">Events</button>
+            <button class="tab" data-type="sport" aria-pressed="false" type="button">Sports</button>
+        </div>
+
+        <div style="margin-left:auto;display:flex;align-items:center;">
+            <label for="sort" class="visually-hidden">Sort</label>
+            <select id="sort" class="sort-select" aria-label="Sort movies">
+                <option value="default">Default</option>
+                <option value="az">Title A–Z</option>
+                <option value="za">Title Z–A</option>
+            </select>
+        </div>
+    </div>
+
     <main id="maincontent" class="container" role="main">
         <!-- Hero Section -->
         <div class="hero">
@@ -102,108 +145,246 @@
 
         <div class="mover"><h2>Popular Movies</h2></div>
 
-        <div class="movie" aria-live="polite">
-            <div class="card">
+        <div class="movie" id="movie-list" aria-live="polite">
+            <!-- example cards: add many more items below (duplicate pattern for additional posters you have) -->
+            <div class="card" data-type="movie" data-id="m1" tabindex="0">
+                <span class="badge">Now</span>
+                <span class="rating">8.2</span>
                 <img src="./img/ek-deewane.avif" alt="Deewaniyat movie poster" loading="lazy">
                 <h3>Deewaniyat</h3>
+                <p class="meta" hidden>Language: Hindi • Runtime: 2h</p>
             </div>
-            <div class="card">
+
+            <div class="card" data-type="movie" data-id="m2" tabindex="0">
                 <img src="./img/thamma.avif" alt="Thamma movie poster" loading="lazy">
                 <h3>Thamma</h3>
+                <p class="meta" hidden>Language: Tamil • Runtime: 2h 10m</p>
             </div>
-            <div class="card">
+
+            <div class="card" data-type="movie" data-id="m3" tabindex="0">
                 <img src="./img/kantara.avif" alt="Kantara movie poster" loading="lazy">
                 <h3>Kantara</h3>
+                <p class="meta" hidden>Language: Kannada • Runtime: 2h 20m</p>
             </div>
-            <div class="card">
+
+            <div class="card" data-type="movie" data-id="m4" tabindex="0">
                 <img src="./img/regretting-you.avif" alt="Regretting You movie poster" loading="lazy">
                 <h3>Regretting You</h3>
+                <p class="meta" hidden>Language: English • Runtime: 1h 50m</p>
             </div>
-            <div class="card">
+
+            <div class="card" data-type="movie" data-id="m5" tabindex="0">
                 <img src="./img/godday-chaa-2.avif" alt="Godday Godday Chaa 2 movie poster" loading="lazy">
                 <h3>Godday Godday</h3>
+                <p class="meta" hidden>Language: Punjabi • Runtime: 2h</p>
             </div>
-            <div class="card">
+
+            <!-- more items (repeat pattern, add your own image files) -->
+            <div class="card" data-type="movie" data-id="m6" tabindex="0">
                 <img src="./img/sunny-sanskari.avif" alt="Sunny Sanskari Ki Tulsi Kumari movie poster" loading="lazy">
                 <h3>Sunny Sanskari</h3>
+                <p class="meta" hidden>Language: Hindi • Runtime: 1h 55m</p>
             </div>
-            <div class="card">
+
+            <div class="card" data-type="movie" data-id="m7" tabindex="0">
                 <img src="./img/jolly-llb-3.avif" alt="Jolly LLB 3 movie poster" loading="lazy">
                 <h3>Jolly LLB 3</h3>
+                <p class="meta" hidden>Language: Hindi • Runtime: 2h 5m</p>
             </div>
-            <div class="card">
+
+            <div class="card" data-type="movie" data-id="m8" tabindex="0">
                 <img src="./img/dfo-diary.avif" alt="DFO Diary movie poster" loading="lazy">
                 <h3>DFO Diary</h3>
+                <p class="meta" hidden>Language: Malayalam • Runtime: 2h 10m</p>
             </div>
+
+            <!-- ADDITIONAL placeholder cards (you can replace src/alt)
+            <div class="card" data-type="movie" data-id="m9" tabindex="0">
+                <img src="./img/placeholder1.avif" alt="Action Movie poster" loading="lazy">
+                <h3>Action Blast</h3>
+                <p class="meta" hidden>Language: English • Runtime: 2h</p>
+            </div>
+            <div class="card" data-type="movie" data-id="m10" tabindex="0">
+                <img src="./img/placeholder2.avif" alt="Romance Movie poster" loading="lazy">
+                <h3>Love & Beyond</h3>
+                <p class="meta" hidden>Language: Hindi • Runtime: 2h 5m</p>
+            </div>
+            <div class="card" data-type="event" data-id="e1" tabindex="0">
+                <img src="./img/event1.avif" alt="Live Concert poster" loading="lazy">
+                <h3>Summer Beats</h3>
+                <p class="meta" hidden>Type: Concert • Date: Soon</p>
+            </div>
+            <div class="card" data-type="sport" data-id="s1" tabindex="0">
+                <img src="./img/sport1.avif" alt="Football Match poster" loading="lazy">
+                <h3>City Derby</h3>
+                <p class="meta" hidden>Type: Sport • Date: This Weekend</p>
+            </div> -->
+
+            <!-- Add many more cards as needed; these will be used by "load more" or grid layout -->
         </div>
 
-        <!-- Bottom Area -->
-        <div class="bot">
+        <div class="controls-bottom container">
+            <button id="load-more" class="btn" type="button">Load more</button>
+        </div>
+
+        <!-- Bottom Area unchanged -->
+        <div class="bot container">
             <img src="./img/bot.avif" alt="Promotional banner" loading="lazy">
         </div>
     </main>
 
-    <div class="mover">
-        <h2>RECENTLY MOVIES</h2>
-    </div>
-    <div class="movie">
-        <div class="card">
-            <img src="./img/ek-deewane.avif" alt="Deewaniyat movie poster" loading="lazy">
-            <h3>Deewaniyat</h3>
-        </div>
-        <div class="card">
-            <img src="./img/thamma.avif" alt="Thamma movie poster" loading="lazy">
-            <h3>Thamma</h3>
-        </div>
-        <div class="card">
-            <img src="./img/kantara.avif" alt="Kantara movie poster" loading="lazy">
-            <h3>Kantara</h3>
-        </div>
-        <div class="card">
-            <img src="./img/regretting-you.avif" alt="Regretting You movie poster" loading="lazy">
-            <h3>Regretting You</h3>
-        </div>
-        <div class="card">
-            <img src="./img/godday-chaa-2.avif" alt="Godday Godday Chaa 2 movie poster" loading="lazy">
-            <h3>Godday Godday</h3>
-        </div>
-        <div class="card">
-            <img src="./img/sunny-sanskari.avif" alt="Sunny Sanskari Ki Tulsi Kumari movie poster" loading="lazy">
-            <h3>Sunny Sanskari</h3>
-        </div>
-        <div class="card">
-            <img src="./img/jolly-llb-3.avif" alt="Jolly LLB 3 movie poster" loading="lazy">
-            <h3>Jolly LLB 3</h3>
-        </div>
-        <div class="card">
-            <img src="./img/dfo-diary.avif" alt="DFO Diary movie poster" loading="lazy">
-            <h3>DFO Diary</h3>
+    <!-- details modal -->
+    <div id="detail-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-header">
+                <h3 id="modal-title">Title</h3>
+                <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-img" src="" alt="">
+                <div>
+                    <p id="modal-meta">Meta</p>
+                    <p id="modal-desc">Description goes here. Replace with dynamic content or fetch from API.</p>
+                    <div style="margin-top:.6rem">
+                        <button class="btn" id="book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <footer style="padding:1.2rem 0;background:#fff;border-top:1px solid #eee;margin-top:1.2rem">
+        <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+            <div>© <strong>BookMyShow</strong> · Demo site</div>
+            <div style="color:#666">Built with Me, Anand Kumar Project</div>
+        </div>
+    </footer>
 
     <script>
         (function(){
             const input = document.getElementById('site-search');
             const button = document.getElementById('search-button');
-            const cardsContainer = document.querySelector('.movie');
-            const cards = Array.from(document.querySelectorAll('.movie .card'));
+            const movieList = document.getElementById('movie-list');
+            let cards = Array.from(movieList.querySelectorAll('.card'));
 
-            function filterCards(){
+            // Tabs
+            const tabs = Array.from(document.querySelectorAll('.tab'));
+            let currentType = 'all';
+            tabs.forEach(t => t.addEventListener('click', () => {
+                tabs.forEach(x => x.setAttribute('aria-pressed','false'));
+                t.setAttribute('aria-pressed','true');
+                currentType = t.dataset.type || 'all';
+                applyFilters();
+            }));
+
+            // Sort
+            const sortSelect = document.getElementById('sort');
+            sortSelect.addEventListener('change', () => {
+                applySort();
+            });
+
+            // Search
+            function applyFilters(){
                 const q = (input.value || '').trim().toLowerCase();
                 cards.forEach(card => {
                     const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
-                    card.style.display = title.includes(q) ? '' : 'none';
+                    const type = card.dataset.type || 'movie';
+                    const matchQuery = title.includes(q);
+                    const matchType = (currentType === 'all') || (currentType === type);
+                    card.style.display = (matchQuery && matchType) ? '' : 'none';
                 });
-                // announce if no results
-                const anyVisible = cards.some(c => c.style.display !== 'none');
-                cardsContainer.setAttribute('aria-busy', !anyVisible ? 'true' : 'false');
             }
 
-            button.addEventListener('click', filterCards);
-            input.addEventListener('input', filterCards);
+            function applySort(){
+                const val = sortSelect.value;
+                const visible = cards.filter(c => c.style.display !== 'none');
+                if(val === 'az' || val === 'za'){
+                    visible.sort((a,b) => {
+                        const A = a.querySelector('h3').textContent.trim().toLowerCase();
+                        const B = b.querySelector('h3').textContent.trim().toLowerCase();
+                        return val === 'az' ? A.localeCompare(B) : B.localeCompare(A);
+                    }).forEach(n => movieList.appendChild(n));
+                } else {
+                    // default: keep original order (we'll reattach from cached array)
+                    cards.forEach(c => movieList.appendChild(c));
+                }
+            }
+
+            function filterAndSort(){
+                applyFilters();
+                applySort();
+            }
+
+            button.addEventListener('click', filterAndSort);
+            input.addEventListener('input', applyFilters);
             input.addEventListener('keydown', function(e){
-                if(e.key === 'Enter'){ e.preventDefault(); filterCards(); }
+                if(e.key === 'Enter'){ e.preventDefault(); filterAndSort(); }
             });
+
+            // Load more (simple clone of existing cards or reveal hidden ones)
+            const loadMoreBtn = document.getElementById('load-more');
+            let loadCount = 0;
+            loadMoreBtn && loadMoreBtn.addEventListener('click', () => {
+                // if placeholders exist in DOM (hidden by server), reveal them. Otherwise clone few items as sample.
+                const hidden = cards.filter(c => c.dataset.cloned !== 'true' && movieList.children.length < 50);
+                // clone first 6 cards as an example
+                for(let i=0;i<6;i++){
+                    const src = cards[i % cards.length];
+                    const clone = src.cloneNode(true);
+                    clone.dataset.cloned = 'true';
+                    clone.tabIndex = 0;
+                    movieList.appendChild(clone);
+                    cards.push(clone);
+                }
+                loadCount++;
+                if(loadCount > 5) loadMoreBtn.disabled = true;
+            });
+
+            // Modal: open on Enter or click on a card
+            const modal = document.getElementById('detail-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalImg = document.getElementById('modal-img');
+            const modalMeta = document.getElementById('modal-meta');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalClose = document.getElementById('modal-close');
+
+            function openModalFor(card){
+                modalTitle.textContent = card.querySelector('h3').textContent || 'Details';
+                modalImg.src = card.querySelector('img')?.src || '';
+                modalImg.alt = card.querySelector('img')?.alt || '';
+                modalMeta.textContent = card.querySelector('.meta')?.textContent || '';
+                modalDesc.textContent = 'This is a demo description. Replace with your content or fetch details via API using data-id: ' + (card.dataset.id || '');
+                modal.setAttribute('open','');
+                modal.setAttribute('aria-hidden','false');
+                modal.querySelector('.modal-dialog').focus();
+            }
+
+            movieList.addEventListener('click', (e) => {
+                const card = e.target.closest('.card');
+                if(card) openModalFor(card);
+            });
+            movieList.addEventListener('keydown', (e) => {
+                if((e.key === 'Enter' || e.key === ' ') && e.target.closest('.card')){
+                    e.preventDefault();
+                    openModalFor(e.target.closest('.card'));
+                }
+            });
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Escape' && modal.hasAttribute('open')) closeModal();
+            });
+
+            function closeModal(){
+                modal.removeAttribute('open');
+                modal.setAttribute('aria-hidden','true');
+            }
+
+            // initial cache
+            cards = Array.from(movieList.querySelectorAll('.card'));
         })();
     </script>
 </body>
