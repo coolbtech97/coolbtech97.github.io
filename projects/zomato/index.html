@@ -1,246 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ...existing code... -->
+{ /* Replace the head block: add metadata, improved styles and keep font preload */ }
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
+    <title>Zomato — Local restaurants</title>
+    <meta name="description" content="Discover nearby restaurants, offers and ratings. Responsive demo with filters and search.">
+    <meta name="theme-color" content="#ff3b30">
+
+    <!-- embedded styles to enhance visuals and layout -->
+    <style>
+        :root{
+            --brand:#ff3b30; --bg:#fafafa; --card:#fff; --muted:#666;
+            --max-width:1100px;
+        }
+        *{box-sizing:border-box}
+        body{font-family: 'Libre Baskerville', Georgia, serif;background:var(--bg);color:#222;margin:0}
+        .container{max-width:var(--max-width);margin:0 auto;padding:0 1rem}
+
+        /* NAV */
+        header{position:fixed;inset:0 0 auto 0;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.06);z-index:40}
+        #first.container{display:flex;align-items:center;gap:1rem;height:72px}
+        .logo{font-weight:700;color:var(--brand);font-size:1.25rem}
+        .nav-search{flex:1;display:flex;align-items:center;gap:.5rem}
+        .nav-search input[type="search"]{flex:1;padding:.6rem .8rem;border-radius:8px;border:1px solid #e3e3e3}
+        .nav-actions{display:flex;gap:.5rem;align-items:center}
+        .btn{background:var(--brand);color:#fff;padding:.45rem .6rem;border-radius:8px;border:none;cursor:pointer}
+        .ghost{background:transparent;border:1px solid #eee;padding:.35rem .6rem;border-radius:8px;cursor:pointer;color:var(--muted)}
+        .hamburger{display:none;background:transparent;border:none;font-size:1.2rem}
+
+        /* controls (filters) */
+        .controls{display:flex;gap:.5rem;align-items:center;padding:.8rem 0}
+        .categories{display:flex;gap:.5rem;flex-wrap:wrap}
+        .chip{background:#fff;padding:.4rem .6rem;border-radius:999px;border:1px solid #eee;cursor:pointer}
+        .chip[aria-pressed="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+        /* grid for cards */
+        main{padding-top:110px;padding-bottom:2rem}
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+        .card{background:var(--card);border-radius:10px;overflow:hidden;border:1px solid #eee;box-shadow:0 4px 12px rgba(0,0,0,.04);position:relative}
+        .card .image{position:relative;height:160px;overflow:hidden}
+        .card .image img{width:100%;height:100%;object-fit:cover;display:block}
+        .badge{position:absolute;left:.6rem;top:.6rem;background:rgba(0,0,0,.6);color:#fff;padding:.2rem .5rem;border-radius:6px;font-size:.85rem}
+        .card-body{padding:.75rem 1rem}
+        .card h3{margin:0;font-size:1rem}
+        .meta{color:var(--muted);font-size:.9rem;margin-top:.35rem}
+        .row{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem}
+        .rating{background:#222;color:#fff;padding:.2rem .45rem;border-radius:6px;font-weight:700}
+
+        /* load more and footer */
+        .load-more{display:flex;justify-content:center;padding:1rem 0}
+        footer{padding:1rem 0;text-align:center;color:var(--muted);font-size:.9rem;border-top:1px solid #eee;background:transparent}
+
+        /* responsive */
+        @media (max-width:880px){
+            .nav-search{display:none}
+            .hamburger{display:inline-block}
+        }
+        .padding{padding-top: 80px;}
+    </style>
 </head>
 <body>
-    <header>
-        <div id="first">
-            <div id="name">zomato</div>
-            <div id="search"></div>
-            <div id="log"></div>
-            <div id="sign"></div>
-        </div>
-        <div id="second">b</div>
-    </header>
-    <main style="padding-top: 75px;">
-    <div class="card">
-        <!-- Image -->
-        <div class="image">
-            <img class="img" src="./resturant1.jpg" alt="Image 1">
-            <p class="off">Flat 25% OFF</p>
-        </div>
-        <!-- Restaruant Name -->
-        <div class="restaruant">
+{ /* Replace header with a full navigation bar */ }
+<header>
+    <div id="first" class="container">
+        <div class="logo">Zomato</div>
 
-            <div class="restaruant-name box">
-                <p>The Darzi Bar and Kitchen</p>
-            </div>
-            <div class="rating box">
-                <p>4.2*</p>
-            </div>
+        <div class="nav-search" role="search" aria-label="Search restaurants">
+            <input id="search-input" type="search" placeholder="Search restaurants, dishes, or cuisines" aria-label="Search restaurants">
+            <button id="search-btn" class="btn">Search</button>
+        </div>
 
-        </div>
-        <!-- Food Information -->
-        <div class="food">
-            <div class="food-name box">
-                <p>North Indian ,Chinede</p>
-            </div>
-            <div class="price box">
-                <p>&#8377;2800 for two</p>
-            </div>
-        </div>
-        <!-- Location -->
-        <div class="location">
-            <div class="place box">
-                <p>Middle Circle , CP</p>
-            </div>
-            <div class="distance box">
-                <p>1.4Km</p>
-            </div>
+        <div class="nav-actions">
+            <button class="ghost" id="location-btn" title="Change location">Delhi ▾</button>
+            <button class="ghost">Offers</button>
+            <button class="ghost">Help</button>
+            <button class="btn" id="login-btn">Sign in</button>
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle menu">☰</button>
         </div>
     </div>
 
-    <div class="card">
-        <!-- Image -->
-        <div class="image">
-            <p class="off">Flat 25% OFF</p>
-            <img class="img" src="./resturant1.jpg" alt="Image 2">
-        </div>
-        <!-- Restaruant Name -->
-        <div class="restaruant">
-
-            <div class="restaruant-name box">
-                <p>Lord Of The Drinks</p>
-            </div>
-            <div class="rating box">
-                <p>4.3*</p>
+    <div id="second" class="container" style="padding-bottom:.6rem;">
+        <nav class="controls" aria-label="filters">
+            <div class="categories" role="tablist" aria-label="Categories">
+                <button class="chip" data-cat="all" aria-pressed="true">All</button>
+                <button class="chip" data-cat="veg" aria-pressed="false">Veg</button>
+                <button class="chip" data-cat="nonveg" aria-pressed="false">Non-Veg</button>
+                <button class="chip" data-cat="fastfood" aria-pressed="false">Fast Food</button>
+                <button class="chip" data-cat="cafe" aria-pressed="false">Cafes</button>
+                <button class="chip" data-cat="trending" aria-pressed="false">Trending</button>
             </div>
 
-        </div>
-        <!-- Food Information -->
-        <div class="food">
-            <div class="food-name box">
-                <p>Oriental, North Indian, con..</p>
+            <div style="margin-left:auto;display:flex;gap:.5rem;align-items:center">
+                <label for="sort" class="visually-hidden">Sort</label>
+                <select id="sort" aria-label="Sort" style="padding:.4rem;border-radius:6px;border:1px solid #eee">
+                    <option value="relevance">Relevance</option>
+                    <option value="rating">Top Rated</option>
+                    <option value="distance">Nearest</option>
+                </select>
             </div>
-            <div class="price box">
-                <p>&#8377;2400 for t..</p>
-            </div>
-        </div>
-        <!-- Location -->
-        <div class="location">
-            <div class="place box">
-                <p>Middle Circle , CP</p>
-            </div>
-            <div class="distance box">
-                <p>937m</p>
-            </div>
-        </div>
+        </nav>
     </div>
+</header>
 
-    <div class="card">
-        <!-- Image -->
-        <div class="image">
-            <p class="off">Flat 25% OFF</p>
-            <img class="img" src="./resturant1.jpg" alt="Image 3">
+<main class="container padding">
+{ /* Replace the existing list container with a grid wrapper and keep card markup (use ...existing code... to indicate unchanged inner card blocks) */ }
+    <section id="results" class="grid" aria-live="polite">
+        <!-- existing cards converted into grid items; each card gets data-cat for filtering -->
+        <div class="card" data-cat="nonveg">
+            <div class="image">
+                <img class="img" src="./resturant1.jpg" alt="The Darzi Bar and Kitchen">
+                <span class="badge">Flat 25% OFF</span>
+            </div>
+            <div class="card-body">
+                <h3>The Darzi Bar and Kitchen</h3>
+                <div class="row">
+                    <div class="meta">North Indian, Chinese</div>
+                    <div class="rating">4.2</div>
+                </div>
+                <div class="row">
+                    <div class="meta">&#8377;2800 for two</div>
+                    <div class="meta">1.4 km</div>
+                </div>
+            </div>
         </div>
-        <!-- Restaruant Name -->
-        <div class="restaruant">
 
-            <div class="restaruant-name box">
-                <p>Out Of The Box Courtyard</p>
+        <div class="card" data-cat="nonveg">
+            <div class="image">
+                <img class="img" src="./resturant1.jpg" alt="Lord Of The Drinks">
+                <span class="badge">Flat 25% OFF</span>
             </div>
-            <div class="rating box">
-                <p>4.1*</p>
+            <div class="card-body">
+                <h3>Lord Of The Drinks</h3>
+                <div class="row">
+                    <div class="meta">Oriental, North Indian</div>
+                    <div class="rating">4.3</div>
+                </div>
+                <div class="row">
+                    <div class="meta">&#8377;2400 for two</div>
+                    <div class="meta">937 m</div>
+                </div>
             </div>
+        </div>
 
-        </div>
-        <!-- Food Information -->
-        <div class="food">
-            <div class="food-name box">
-                <p>North Indian ,Chinede</p>
+        <div class="card" data-cat="nonveg">
+            <div class="image">
+                <img class="img" src="./resturant1.jpg" alt="Out Of The Box Courtyard">
+                <span class="badge">Flat 25% OFF</span>
             </div>
-            <div class="price box">
-                <p>&#8377;2800 for two</p>
-            </div>
-        </div>
-        <!-- Location -->
-        <div class="location">
-            <div class="place box">
-                <p>Middle Circle , CP</p>
-            </div>
-            <div class="distance box">
-                <p>1.4Km</p>
+            <div class="card-body">
+                <h3>Out Of The Box Courtyard</h3>
+                <div class="row">
+                    <div class="meta">North Indian, Chinese</div>
+                    <div class="rating">4.1</div>
+                </div>
+                <div class="row">
+                    <div class="meta">&#8377;2800 for two</div>
+                    <div class="meta">1.4 km</div>
+                </div>
             </div>
         </div>
+
+        <div class="card" data-cat="nonveg">
+            <div class="image">
+                <img class="img" src="./resturant1.jpg" alt="The Darzi Bar and Kitchen">
+                <span class="badge">Flat 25% OFF</span>
+            </div>
+            <div class="card-body">
+                <h3>The Darzi Bar and Kitchen</h3>
+                <div class="row">
+                    <div class="meta">North Indian, Chinese</div>
+                    <div class="rating">4.2</div>
+                </div>
+                <div class="row">
+                    <div class="meta">&#8377;2800 for two</div>
+                    <div class="meta">1.4 km</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-cat="nonveg">
+            <div class="image">
+                <img class="img" src="./resturant1.jpg" alt="The Darzi Bar and Kitchen">
+                <span class="badge">Flat 25% OFF</span>
+            </div>
+            <div class="card-body">
+                <h3>The Darzi Bar and Kitchen</h3>
+                <div class="row">
+                    <div class="meta">North Indian, Chinese</div>
+                    <div class="rating">4.2</div>
+                </div>
+                <div class="row">
+                    <div class="meta">&#8377;2800 for two</div>
+                    <div class="meta">1.4 km</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-cat="nonveg">
+            <div class="image">
+                <img class="img" src="./resturant1.jpg" alt="The Darzi Bar and Kitchen">
+                <span class="badge">Flat 25% OFF</span>
+            </div>
+            <div class="card-body">
+                <h3>The Darzi Bar and Kitchen</h3>
+                <div class="row">
+                    <div class="meta">North Indian, Chinese</div>
+                    <div class="rating">4.2</div>
+                </div>
+                <div class="row">
+                    <div class="meta">&#8377;2800 for two</div>
+                    <div class="meta">1.4 km</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="load-more">
+        <button id="load-more" class="btn">Load more</button>
     </div>
+</main>
 
-    <div class="card">
-        <!-- Image -->
-        <div class="image">
-            <img class="img" src="./resturant1.jpg" alt="Image 4">
-            <p class="off">Flat 25% OFF</p>
-        </div>
-        <!-- Restaruant Name -->
-        <div class="restaruant">
-
-            <div class="restaruant-name box">
-                <p>The Darzi Bar and Kitchen</p>
-            </div>
-            <div class="rating box">
-                <p>4.2*</p>
-            </div>
-
-        </div>
-        <!-- Food Information -->
-        <div class="food">
-            <div class="food-name box">
-                <p>North Indian ,Chinede</p>
-            </div>
-            <div class="price box">
-                <p>&#8377;2800 for two</p>
-            </div>
-        </div>
-        <!-- Location -->
-        <div class="location">
-            <div class="place box">
-                <p>Middle Circle , CP</p>
-            </div>
-            <div class="distance box">
-                <p>1.4Km</p>
-            </div>
-        </div>
+<footer>
+    <div class="container">
+        © Zomato demo · Project by Anand Kumar
     </div>
+</footer>
 
-    <div class="card">
-        <!-- Image -->
-        <div class="image">
-            <img class="img" src="./resturant1.jpg" alt="Image 5">
-            <p class="off">Flat 25% OFF</p>
-        </div>
-        <!-- Restaruant Name -->
-        <div class="restaruant">
+<!-- { /* Add a lightweight script for UI interactions: search, category chips, mobile menu and load more */ } -->
+<script>
+    (function(){
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const chips = Array.from(document.querySelectorAll('.chip'));
+        const results = document.getElementById('results');
+        const cards = () => Array.from(results.querySelectorAll('.card'));
+        const menuToggle = document.getElementById('menu-toggle');
+        const loadMoreBtn = document.getElementById('load-more');
 
-            <div class="restaruant-name box">
-                <p>The Darzi Bar and Kitchen</p>
-            </div>
-            <div class="rating box">
-                <p>4.2*</p>
-            </div>
+        // Mobile menu toggle: toggle visibility of search for small screens
+        menuToggle && menuToggle.addEventListener('click', () => {
+            const s = document.querySelector('.nav-search');
+            if(!s) return;
+            s.style.display = s.style.display === 'flex' ? 'none' : 'flex';
+        });
 
-        </div>
-        <!-- Food Information -->
-        <div class="food">
-            <div class="food-name box">
-                <p>North Indian ,Chinede</p>
-            </div>
-            <div class="price box">
-                <p>&#8377;2800 for two</p>
-            </div>
-        </div>
-        <!-- Location -->
-        <div class="location">
-            <div class="place box">
-                <p>Middle Circle , CP</p>
-            </div>
-            <div class="distance box">
-                <p>1.4Km</p>
-            </div>
-        </div>
-    </div>
+        // Category filtering
+        chips.forEach(chip => chip.addEventListener('click', () => {
+            chips.forEach(c=>c.setAttribute('aria-pressed','false'));
+            chip.setAttribute('aria-pressed','true');
+            const cat = chip.dataset.cat;
+            filter({q: searchInput.value, cat});
+        }));
 
-    <div class="card">
-        <!-- Image -->
-        <div class="image">
-            <img class="img" src="./resturant1.jpg" alt="Image 6">
-            <p class="off">Flat 25% OFF</p>
-        </div>
-        <!-- Restaruant Name -->
-        <div class="restaruant">
+        // Search
+        searchBtn.addEventListener('click', () => filter({q: searchInput.value}));
+        searchInput.addEventListener('input', () => filter({q: searchInput.value}));
 
-            <div class="restaruant-name box">
-                <p>The Darzi Bar and Kitchen</p>
-            </div>
-            <div class="rating box">
-                <p>4.2*</p>
-            </div>
+        function filter({q = '', cat = document.querySelector('.chip[aria-pressed="true"]')?.dataset?.cat || 'all'} = {}) {
+            const term = (q || '').trim().toLowerCase();
+            cards().forEach(card => {
+                const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
+                const catMatch = (cat === 'all') || (card.dataset.cat === cat);
+                const textMatch = !term || title.includes(term);
+                card.style.display = (catMatch && textMatch) ? '' : 'none';
+            });
+        }
 
-        </div>
-        <!-- Food Information -->
-        <div class="food">
-            <div class="food-name box">
-                <p>North Indian ,Chinede</p>
-            </div>
-            <div class="price box">
-                <p>&#8377;2800 for two</p>
-            </div>
-        </div>
-        <!-- Location -->
-        <div class="location">
-            <div class="place box">
-                <p>Middle Circle , CP</p>
-            </div>
-            <div class="distance box">
-                <p>1.4Km</p>
-            </div>
-        </div>
-    </div>
-    </main>
+        // Load more: simple clone of visible cards to demonstrate pagination
+        let loads = 0;
+        loadMoreBtn && loadMoreBtn.addEventListener('click', () => {
+            const current = cards();
+            for (let i=0;i<6;i++){
+                const idx = (i + loads*6) % current.length;
+                const clone = current[idx].cloneNode(true);
+                clone.classList.add('cloned');
+                results.appendChild(clone);
+            }
+            loads++;
+            if(loads>5) loadMoreBtn.disabled = true;
+        });
+
+        // initial small accessibility tweak
+        document.addEventListener('keydown', (e) => {
+            if(e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+    })();
+</script>
 </body>
 </html>
