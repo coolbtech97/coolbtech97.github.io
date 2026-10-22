@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anand Kumar | Developer Portfolio</title>
+  <meta name="description" content="Anand Kumar's developer portfolio, projects and coding journey.">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #f1f5f9;
+      line-height: 1.7;
+    }
+
+    nav {
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #273047;
+    }
+
+    nav a, .button { color: #8bafff; text-decoration: none; }
+
+    .hero {
+      min-height: 65vh;
+      padding: 100px 8% 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .tag { color: #8bafff; font-weight: bold; }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
+      line-height: 1.15;
+      margin: 18px 0;
+    }
+
+    h1 span { color: #8bafff; }
+    .hero p { max-width: 650px; color: #b8c2d6; font-size: 1.1rem; }
+
+    .button {
+      display: inline-block;
+      margin-top: 26px;
+      padding: 10px 20px;
+      border: 1px solid #8bafff;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    section { padding: 55px 8%; }
+    h2 { font-size: 2rem; margin-bottom: 20px; }
+
+    .card {
+      background: #131b30;
+      border: 1px solid #273047;
+      border-radius: 14px;
+      padding: 24px;
+      margin: 14px 0;
+    }
+
+    .card p { color: #b8c2d6; margin-top: 8px; }
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .skills span {
+      padding: 7px 13px;
+      background: #182442;
+      border: 1px solid #34476b;
+      border-radius: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px;
+      border-top: 1px solid #273047;
+      color: #b8c2d6;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <strong>Anand Kumar.</strong>
+    <a href="https://github.com/coolbtech97">GitHub ↗</a>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="tag">CSE STUDENT · DEVELOPER IN PROGRESS</div>
+      <h1>Hi, I'm Anand.<br><span>I build things with code.</span></h1>
+      <p>
+        I'm a Computer Science Engineering student at JBIT, Dehradun,
+        learning software development, databases and backend engineering.
+        This is my space to share my projects and progress.
+      </p>
+      <div>
+        <a class="button" href="#projects">Explore my work ↓</a>
+      </div>
+    </header>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>
+          I enjoy solving programming problems and understanding how
+          software works. I'm currently strengthening my skills in Java,
+          SQL, data structures and backend development.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Technologies I'm Learning</h2>
+      <div class="skills">
+        <span>Java</span>
+        <span>C++</span>
+        <span>Python</span>
+        <span>SQL</span>
+        <span>DBMS</span>
+        <span>Git & GitHub</span>
+        <span>Spring Boot</span>
+        <span>Data Structures</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="card">
+        <h3>My Developer Journey</h3>
+        <p>
+          I'm building practical projects as I learn software engineering.
+          More projects and source code will be showcased here as they develop.
+        </p>
+        <a class="button" href="https://github.com/coolbtech97">
+          View my GitHub →
+        </a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Let's Connect</h2>
+      <div class="card">
+        <p>Explore my code and follow my learning journey on GitHub.</p>
+        <a class="button" href="https://github.com/coolbtech97">
+          Visit GitHub →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Anand Kumar · Built with HTML & CSS</footer>
+</body>
+</html>
